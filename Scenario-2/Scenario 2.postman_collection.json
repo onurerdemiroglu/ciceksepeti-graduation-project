@@ -1,0 +1,1690 @@
+{
+	"info": {
+		"_postman_id": "8ec703a2-201d-4e18-8d32-f4f06750906e",
+		"name": "Scenario 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SignIn",
+			"item": [
+				{
+					"name": "Success sign in",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response;\r",
+									"\r",
+									"const actualResponse = response.json();\r",
+									"var size = Object.keys(actualResponse).length;  \r",
+									"var responsLimit = 1000; \r",
+									"var responseTime = response.responseTime; \r",
+									" \r",
+									"pm.environment.set(\"UserAccessToken\",actualResponse.access_token);\r",
+									" \r",
+									"pm.test(\"Response control\", function () { \r",
+									"  pm.expect(response.to.have.status(201));\r",
+									"  pm.expect(response.to.be.withBody);\r",
+									"  pm.expect(response.to.be.json);\r",
+									"  pm.expect(pm.response.to.have.jsonBody('access_token'));\r",
+									"}); \r",
+									" \r",
+									"tests[\"Size control\"] = size == 1;   \r",
+									"tests[\"Access token type control\"] = typeof(actualResponse.access_token) === \"string\";\r",
+									"  \r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"  pm.expect(response.to.have.status(\"Created\")); \r",
+									"});\r",
+									"  \r",
+									"\r",
+									"pm.test(\"Response should not be error\", function () { \r",
+									"    pm.expect(response.to.not.be.error); \r",
+									"}); \r",
+									"\r",
+									"pm.test(\"Check response time\", () => {  \r",
+									"  if (responseTime > responsLimit) {       \r",
+									"    console.log(\"Response time was longer than \" + responsLimit + \" ms \" + \"(\" + responseTime + \" ms)\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));\r",
+									"  }\r",
+									"  pm.expect(responseTime).to.be.below(responsLimit); \r",
+									"});\r",
+									" \r",
+									" pm.test(\"Response has charset in content-type header\", function () {\r",
+									"    pm.expect(pm.response.to.have.header(\"Content-Type\"));\r",
+									"    pm.expect(pm.response.to.have.header('Content-Type', 'application/json; charset=utf-8'));\r",
+									"});\r",
+									" \r",
+									" \r",
+									"\r",
+									" "
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{email}}\",\r\n    \"password\":\"{{password}}\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/fe/v1/authorization/signin",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"fe",
+								"v1",
+								"authorization",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Failed sign in",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response;\r",
+									"\r",
+									"const actualResponse = response.json();\r",
+									"var size = Object.keys(actualResponse).length;  \r",
+									"var responsLimit = 1000; \r",
+									"var responseTime = response.responseTime; \r",
+									" \r",
+									"pm.environment.set(\"UserAccessToken\",actualResponse.access_token);\r",
+									" \r",
+									"\r",
+									"tests[\"Size control\"] = size == 2;   \r",
+									"tests[\"Status code type control\"] = typeof(actualResponse.statusCode) === \"number\";\r",
+									"tests[\"Message type control\"] = typeof(actualResponse.message[0]) === \"string\"; \r",
+									"\r",
+									"\r",
+									"pm.test(\"Response control\", function () { \r",
+									"  pm.expect(response.to.have.status(401));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('message'));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('statusCode')); \r",
+									"  \r",
+									"  pm.expect(response.to.be.withBody);\r",
+									"  pm.expect(response.to.be.json);\r",
+									"}); \r",
+									"\r",
+									"var expectedResponse= (\r",
+									"            \"Unauthorized\"\r",
+									");\r",
+									"   \r",
+									"pm.test(\"Check response is true\", () => {\r",
+									"    pm.expect(actualResponse.message).to.eql(expectedResponse); \r",
+									"});\r",
+									" \r",
+									"  \r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"  pm.expect(response.to.have.status(\"Unauthorized\")); \r",
+									"  console.log(\"Error: Unauthorized\" +\"\\n\"\r",
+									"                +\"Message Error: \"+actualResponse.message); \r",
+									"});\r",
+									"   \r",
+									"pm.test(\"Response should be error\", function () { \r",
+									"    pm.expect(response.to.be.error); \r",
+									"}); \r",
+									"\r",
+									"pm.test(\"Check response time\", () => {  \r",
+									"  if (responseTime > responsLimit) {       \r",
+									"    console.log(\"Response time was longer than \" + responsLimit + \" ms \" + \"(\" + responseTime + \" ms)\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));\r",
+									"  }\r",
+									"  pm.expect(responseTime).to.be.below(responsLimit); \r",
+									"});\r",
+									" \r",
+									" pm.test(\"Response has charset in content-type header\", function () {\r",
+									"    pm.expect(pm.response.to.have.header(\"Content-Type\"));\r",
+									"    pm.expect(pm.response.to.have.header('Content-Type', 'application/json; charset=utf-8'));\r",
+									"});\r",
+									"  \r",
+									" \r",
+									" \r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"onurerdemiroglu@gmail.com\",\r\n    \"password\":\"123213123\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/fe/v1/authorization/signin",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"fe",
+								"v1",
+								"authorization",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Email null & Password undefined",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response;\r",
+									"\r",
+									"const actualResponse = response.json();\r",
+									"var size = Object.keys(actualResponse).length;  \r",
+									"var responsLimit = 1000; \r",
+									"var responseTime = response.responseTime; \r",
+									" \r",
+									"pm.environment.set(\"UserAccessToken\",actualResponse.access_token);\r",
+									" \r",
+									"\r",
+									"tests[\"Size control\"] = size == 2;   \r",
+									"tests[\"Status code type control\"] = typeof(actualResponse.statusCode) === \"number\";\r",
+									"tests[\"Message type control\"] = typeof(actualResponse.message[0]) === \"string\"; \r",
+									"\r",
+									"\r",
+									"pm.test(\"Response control\", function () { \r",
+									"  pm.expect(response.to.have.status(401));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('message'));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('statusCode')); \r",
+									"  \r",
+									"  pm.expect(response.to.be.withBody);\r",
+									"  pm.expect(response.to.be.json);\r",
+									"}); \r",
+									"\r",
+									"var expectedResponse= (\r",
+									"            \"Unauthorized\"\r",
+									");\r",
+									"   \r",
+									"pm.test(\"Check response is true\", () => {\r",
+									"    pm.expect(actualResponse.message).to.eql(expectedResponse); \r",
+									"});\r",
+									" \r",
+									"  \r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"  pm.expect(response.to.have.status(\"Unauthorized\")); \r",
+									"  console.log(\"Error: Unauthorized\" +\"\\n\"\r",
+									"                +\"Message Error: \"+actualResponse.message); \r",
+									"});\r",
+									"   \r",
+									"pm.test(\"Response should be error\", function () { \r",
+									"    pm.expect(response.to.be.error); \r",
+									"}); \r",
+									"\r",
+									"pm.test(\"Check response time\", () => {  \r",
+									"  if (responseTime > responsLimit) {       \r",
+									"    console.log(\"Response time was longer than \" + responsLimit + \" ms \" + \"(\" + responseTime + \" ms)\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));\r",
+									"  }\r",
+									"  pm.expect(responseTime).to.be.below(responsLimit); \r",
+									"});\r",
+									" \r",
+									" pm.test(\"Response has charset in content-type header\", function () {\r",
+									"    pm.expect(pm.response.to.have.header(\"Content-Type\"));\r",
+									"    pm.expect(pm.response.to.have.header('Content-Type', 'application/json; charset=utf-8'));\r",
+									"});\r",
+									"  \r",
+									" \r",
+									" \r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/fe/v1/authorization/signin?email",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"fe",
+								"v1",
+								"authorization",
+								"signin"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Email null & Password null",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response;\r",
+									"\r",
+									"const actualResponse = response.json();\r",
+									"var size = Object.keys(actualResponse).length;  \r",
+									"var responsLimit = 1000; \r",
+									"var responseTime = response.responseTime; \r",
+									" \r",
+									"pm.environment.set(\"UserAccessToken\",actualResponse.access_token);\r",
+									" \r",
+									"\r",
+									"tests[\"Size control\"] = size == 2;   \r",
+									"tests[\"Status code type control\"] = typeof(actualResponse.statusCode) === \"number\";\r",
+									"tests[\"Message type control\"] = typeof(actualResponse.message[0]) === \"string\"; \r",
+									"\r",
+									"\r",
+									"pm.test(\"Response control\", function () { \r",
+									"  pm.expect(response.to.have.status(401));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('message'));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('statusCode')); \r",
+									"  \r",
+									"  pm.expect(response.to.be.withBody);\r",
+									"  pm.expect(response.to.be.json);\r",
+									"}); \r",
+									"\r",
+									"var expectedResponse= (\r",
+									"            \"Unauthorized\"\r",
+									");\r",
+									"   \r",
+									"pm.test(\"Check response is true\", () => {\r",
+									"    pm.expect(actualResponse.message).to.eql(expectedResponse); \r",
+									"});\r",
+									" \r",
+									"  \r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"  pm.expect(response.to.have.status(\"Unauthorized\")); \r",
+									"  console.log(\"Error: Unauthorized\" +\"\\n\"\r",
+									"                +\"Message Error: \"+actualResponse.message); \r",
+									"});\r",
+									"   \r",
+									"pm.test(\"Response should be error\", function () { \r",
+									"    pm.expect(response.to.be.error); \r",
+									"}); \r",
+									"\r",
+									"pm.test(\"Check response time\", () => {  \r",
+									"  if (responseTime > responsLimit) {       \r",
+									"    console.log(\"Response time was longer than \" + responsLimit + \" ms \" + \"(\" + responseTime + \" ms)\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));\r",
+									"  }\r",
+									"  pm.expect(responseTime).to.be.below(responsLimit); \r",
+									"});\r",
+									" \r",
+									" pm.test(\"Response has charset in content-type header\", function () {\r",
+									"    pm.expect(pm.response.to.have.header(\"Content-Type\"));\r",
+									"    pm.expect(pm.response.to.have.header('Content-Type', 'application/json; charset=utf-8'));\r",
+									"});\r",
+									"  \r",
+									" \r",
+									" \r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/fe/v1/authorization/signin?email&password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"fe",
+								"v1",
+								"authorization",
+								"signin"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": null
+								},
+								{
+									"key": "password",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Email undefined & Password undefined",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response;\r",
+									"\r",
+									"const actualResponse = response.json();\r",
+									"var size = Object.keys(actualResponse).length;  \r",
+									"var responsLimit = 1000; \r",
+									"var responseTime = response.responseTime; \r",
+									" \r",
+									"pm.environment.set(\"UserAccessToken\",actualResponse.access_token);\r",
+									" \r",
+									"\r",
+									"tests[\"Size control\"] = size == 2;   \r",
+									"tests[\"Status code type control\"] = typeof(actualResponse.statusCode) === \"number\";\r",
+									"tests[\"Message type control\"] = typeof(actualResponse.message[0]) === \"string\"; \r",
+									"\r",
+									"\r",
+									"pm.test(\"Response control\", function () { \r",
+									"  pm.expect(response.to.have.status(401));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('message'));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('statusCode')); \r",
+									"  \r",
+									"  pm.expect(response.to.be.withBody);\r",
+									"  pm.expect(response.to.be.json);\r",
+									"}); \r",
+									"\r",
+									"var expectedResponse= (\r",
+									"            \"Unauthorized\"\r",
+									");\r",
+									"   \r",
+									"pm.test(\"Check response is true\", () => {\r",
+									"    pm.expect(actualResponse.message).to.eql(expectedResponse); \r",
+									"});\r",
+									" \r",
+									"  \r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"  pm.expect(response.to.have.status(\"Unauthorized\")); \r",
+									"  console.log(\"Error: Unauthorized\" +\"\\n\"\r",
+									"                +\"Message Error: \"+actualResponse.message); \r",
+									"});\r",
+									"   \r",
+									"pm.test(\"Response should be error\", function () { \r",
+									"    pm.expect(response.to.be.error); \r",
+									"}); \r",
+									"\r",
+									"pm.test(\"Check response time\", () => {  \r",
+									"  if (responseTime > responsLimit) {       \r",
+									"    console.log(\"Response time was longer than \" + responsLimit + \" ms \" + \"(\" + responseTime + \" ms)\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));\r",
+									"  }\r",
+									"  pm.expect(responseTime).to.be.below(responsLimit); \r",
+									"});\r",
+									" \r",
+									" pm.test(\"Response has charset in content-type header\", function () {\r",
+									"    pm.expect(pm.response.to.have.header(\"Content-Type\"));\r",
+									"    pm.expect(pm.response.to.have.header('Content-Type', 'application/json; charset=utf-8'));\r",
+									"});\r",
+									"  \r",
+									" \r",
+									" \r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/fe/v1/authorization/signin",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"fe",
+								"v1",
+								"authorization",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Email undefined & Password null",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response;\r",
+									"\r",
+									"const actualResponse = response.json();\r",
+									"var size = Object.keys(actualResponse).length;  \r",
+									"var responsLimit = 1000; \r",
+									"var responseTime = response.responseTime; \r",
+									" \r",
+									"pm.environment.set(\"UserAccessToken\",actualResponse.access_token);\r",
+									" \r",
+									"\r",
+									"tests[\"Size control\"] = size == 2;   \r",
+									"tests[\"Status code type control\"] = typeof(actualResponse.statusCode) === \"number\";\r",
+									"tests[\"Message type control\"] = typeof(actualResponse.message[0]) === \"string\"; \r",
+									"\r",
+									"\r",
+									"pm.test(\"Response control\", function () { \r",
+									"  pm.expect(response.to.have.status(401));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('message'));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('statusCode')); \r",
+									"  \r",
+									"  pm.expect(response.to.be.withBody);\r",
+									"  pm.expect(response.to.be.json);\r",
+									"}); \r",
+									"\r",
+									"var expectedResponse= (\r",
+									"            \"Unauthorized\"\r",
+									");\r",
+									"   \r",
+									"pm.test(\"Check response is true\", () => {\r",
+									"    pm.expect(actualResponse.message).to.eql(expectedResponse); \r",
+									"});\r",
+									" \r",
+									"  \r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"  pm.expect(response.to.have.status(\"Unauthorized\")); \r",
+									"  console.log(\"Error: Unauthorized\" +\"\\n\"\r",
+									"                +\"Message Error: \"+actualResponse.message); \r",
+									"});\r",
+									"   \r",
+									"pm.test(\"Response should be error\", function () { \r",
+									"    pm.expect(response.to.be.error); \r",
+									"}); \r",
+									"\r",
+									"pm.test(\"Check response time\", () => {  \r",
+									"  if (responseTime > responsLimit) {       \r",
+									"    console.log(\"Response time was longer than \" + responsLimit + \" ms \" + \"(\" + responseTime + \" ms)\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));\r",
+									"  }\r",
+									"  pm.expect(responseTime).to.be.below(responsLimit); \r",
+									"});\r",
+									" \r",
+									" pm.test(\"Response has charset in content-type header\", function () {\r",
+									"    pm.expect(pm.response.to.have.header(\"Content-Type\"));\r",
+									"    pm.expect(pm.response.to.have.header('Content-Type', 'application/json; charset=utf-8'));\r",
+									"});\r",
+									"  \r",
+									" \r",
+									" \r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/fe/v1/authorization/signin?signin",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"fe",
+								"v1",
+								"authorization",
+								"signin"
+							],
+							"query": [
+								{
+									"key": "signin",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SignUp",
+			"item": [
+				{
+					"name": "Successfully signed-up",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"randomGmail\", _.random(15555, 566666)+\"onur@gmail.com\")\r",
+									"pm.environment.set(\"randomPassword\", _.random(15555, 566666)+\"onur\")"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response;\r",
+									"\r",
+									"const actualResponse = response.json();\r",
+									"var size = Object.keys(actualResponse).length;  \r",
+									"var responsLimit = 1000; \r",
+									"var responseTime = response.responseTime; \r",
+									" \r",
+									"pm.environment.set(\"UserAccessToken\",actualResponse.access_token);\r",
+									" \r",
+									"pm.test(\"Response control\", function () { \r",
+									"  pm.expect(response.to.have.status(201));\r",
+									"  pm.expect(response.to.be.withBody);\r",
+									"  pm.expect(response.to.be.json);\r",
+									"  pm.expect(pm.response.to.have.jsonBody('access_token'));\r",
+									"}); \r",
+									" \r",
+									"tests[\"Size control\"] = size == 1;   \r",
+									"tests[\"Access token type control\"] = typeof(actualResponse.access_token) === \"string\";\r",
+									"  \r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"  pm.expect(response.to.have.status(\"Created\")); \r",
+									"});\r",
+									"   \r",
+									"pm.test(\"Response should not be error\", function () { \r",
+									"    pm.expect(response.to.not.be.error); \r",
+									"}); \r",
+									"\r",
+									"pm.test(\"Check response time\", () => {  \r",
+									"  if (responseTime > responsLimit) {       \r",
+									"    console.log(\"Response time was longer than \" + responsLimit + \" ms \" + \"(\" + responseTime + \" ms)\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));\r",
+									"  }\r",
+									"  pm.expect(responseTime).to.be.below(responsLimit); \r",
+									"});\r",
+									" \r",
+									" pm.test(\"Response has charset in content-type header\", function () {\r",
+									"    pm.expect(pm.response.to.have.header(\"Content-Type\"));\r",
+									"    pm.expect(pm.response.to.have.header('Content-Type', 'application/json; charset=utf-8'));\r",
+									"});\r",
+									" \r",
+									" \r",
+									"  \r",
+									" \r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{randomGmail}}\",\r\n    \"password\":\"{{randomPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/fe/v1/authorization/signup",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"fe",
+								"v1",
+								"authorization",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Already signed-up",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response;\r",
+									"\r",
+									"const actualResponse = response.json();\r",
+									"var size = Object.keys(actualResponse).length;  \r",
+									"var responsLimit = 1000; \r",
+									"var responseTime = response.responseTime; \r",
+									" \r",
+									"pm.environment.set(\"UserAccessToken\",actualResponse.access_token);\r",
+									" \r",
+									"\r",
+									"tests[\"Size control\"] = size == 3;   \r",
+									"tests[\"Status code type control\"] = typeof(actualResponse.statusCode) === \"number\";\r",
+									"tests[\"Message type control\"] = typeof(actualResponse.message[0]) === \"string\";\r",
+									"tests[\"Error type control\"] = typeof(actualResponse.error) === \"string\";\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response control\", function () { \r",
+									"  pm.expect(response.to.have.status(409));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('message'));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('statusCode'));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('error'));\r",
+									"  \r",
+									"  pm.expect(response.to.be.withBody);\r",
+									"  pm.expect(response.to.be.json);\r",
+									"}); \r",
+									"\r",
+									"var expectedResponse= (\r",
+									"            \"User already exist!\"\r",
+									");\r",
+									"   \r",
+									"pm.test(\"Check response is true\", () => {\r",
+									"    pm.expect(actualResponse.message).to.eql(expectedResponse); \r",
+									"});\r",
+									" \r",
+									"  \r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"  pm.expect(response.to.have.status(\"Conflict\")); \r",
+									"  console.log(\"Error: Conflict\" +\"\\n\"\r",
+									"                +\"Message Error: \"+actualResponse.message); \r",
+									"});\r",
+									"   \r",
+									"pm.test(\"Response should be error\", function () { \r",
+									"    pm.expect(response.to.be.error); \r",
+									"}); \r",
+									"\r",
+									"pm.test(\"Check response time\", () => {  \r",
+									"  if (responseTime > responsLimit) {       \r",
+									"    console.log(\"Response time was longer than \" + responsLimit + \" ms \" + \"(\" + responseTime + \" ms)\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));\r",
+									"  }\r",
+									"  pm.expect(responseTime).to.be.below(responsLimit); \r",
+									"});\r",
+									" \r",
+									" pm.test(\"Response has charset in content-type header\", function () {\r",
+									"    pm.expect(pm.response.to.have.header(\"Content-Type\"));\r",
+									"    pm.expect(pm.response.to.have.header('Content-Type', 'application/json; charset=utf-8'));\r",
+									"});\r",
+									"  \r",
+									" \r",
+									" \r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{email}}\",\r\n    \"password\":\"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/fe/v1/authorization/signup",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"fe",
+								"v1",
+								"authorization",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Email null & Password undefined",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response;\r",
+									"\r",
+									"const actualResponse = response.json();\r",
+									"var size = Object.keys(actualResponse).length;  \r",
+									"var responsLimit = 1000; \r",
+									"var responseTime = response.responseTime; \r",
+									" \r",
+									"pm.environment.set(\"UserAccessToken\",actualResponse.access_token);\r",
+									"  \r",
+									"tests[\"Size control\"] = size == 3;   \r",
+									"tests[\"Status code type control\"] = typeof(actualResponse.statusCode) === \"number\";\r",
+									"tests[\"Message type control\"] = typeof(actualResponse.message[0]) === \"string\";\r",
+									"tests[\"Error type control\"] = typeof(actualResponse.error) === \"string\";\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response control\", function () { \r",
+									"  pm.expect(response.to.have.status(400));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('message'));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('statusCode'));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('error'));\r",
+									"   \r",
+									"  pm.expect(response.to.be.withBody);\r",
+									"  pm.expect(response.to.be.json);\r",
+									"}); \r",
+									"\r",
+									"var expectedResponse= [\r",
+									"            \"email should not be null or undefined\",\r",
+									"            \"email must be shorter than or equal to 100 characters\",\r",
+									"            \"email should not be empty\",\r",
+									"            \"email must be an email\",\r",
+									"            \"password should not be null or undefined\",\r",
+									"            \"password must be shorter than or equal to 20 characters\",\r",
+									"            \"password must be longer than or equal to 8 characters\",\r",
+									"            \"password should not be empty\",\r",
+									"            \"password must be a string\"\r",
+									"];\r",
+									"   \r",
+									"pm.test(\"Check response is true\", () => {\r",
+									"    for (var i = 0; i < expectedResponse.length; i++){\r",
+									"        pm.expect(actualResponse.message[i]).to.eql(expectedResponse[i]);  \r",
+									"    }\r",
+									"});\r",
+									"  \r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"  pm.expect(response.to.have.status(\"Bad Request\")); \r",
+									"  console.log(\"Error: Bad Request\" +\"\\n\"\r",
+									"                +\"Message Error: \"+actualResponse.message); \r",
+									"});\r",
+									"   \r",
+									"pm.test(\"Response should be error\", function () { \r",
+									"    pm.expect(response.to.be.error); \r",
+									"}); \r",
+									"\r",
+									"pm.test(\"Check response time\", () => {  \r",
+									"  if (responseTime > responsLimit) {       \r",
+									"    console.log(\"Response time was longer than \" + responsLimit + \" ms \" + \"(\" + responseTime + \" ms)\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));\r",
+									"  }\r",
+									"  pm.expect(responseTime).to.be.below(responsLimit); \r",
+									"});\r",
+									" \r",
+									" pm.test(\"Response has charset in content-type header\", function () {\r",
+									"    pm.expect(pm.response.to.have.header(\"Content-Type\"));\r",
+									"    pm.expect(pm.response.to.have.header('Content-Type', 'application/json; charset=utf-8'));\r",
+									"});\r",
+									"  \r",
+									" \r",
+									" \r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/fe/v1/authorization/signup?email",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"fe",
+								"v1",
+								"authorization",
+								"signup"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Email null & Password null",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response;\r",
+									"\r",
+									"const actualResponse = response.json();\r",
+									"var size = Object.keys(actualResponse).length;  \r",
+									"var responsLimit = 1000; \r",
+									"var responseTime = response.responseTime; \r",
+									" \r",
+									"pm.environment.set(\"UserAccessToken\",actualResponse.access_token);\r",
+									"  \r",
+									"tests[\"Size control\"] = size == 3;   \r",
+									"tests[\"Status code type control\"] = typeof(actualResponse.statusCode) === \"number\";\r",
+									"tests[\"Message type control\"] = typeof(actualResponse.message[0]) === \"string\";\r",
+									"tests[\"Error type control\"] = typeof(actualResponse.error) === \"string\";\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response control\", function () { \r",
+									"  pm.expect(response.to.have.status(400));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('message'));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('statusCode'));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('error'));\r",
+									"   \r",
+									"  pm.expect(response.to.be.withBody);\r",
+									"  pm.expect(response.to.be.json);\r",
+									"}); \r",
+									"\r",
+									"var expectedResponse= [\r",
+									"            \"email should not be null or undefined\",\r",
+									"            \"email must be shorter than or equal to 100 characters\",\r",
+									"            \"email should not be empty\",\r",
+									"            \"email must be an email\",\r",
+									"            \"password should not be null or undefined\",\r",
+									"            \"password must be shorter than or equal to 20 characters\",\r",
+									"            \"password must be longer than or equal to 8 characters\",\r",
+									"            \"password should not be empty\",\r",
+									"            \"password must be a string\"\r",
+									"];\r",
+									"   \r",
+									"pm.test(\"Check response is true\", () => {\r",
+									"    for (var i = 0; i < expectedResponse.length; i++){\r",
+									"        pm.expect(actualResponse.message[i]).to.eql(expectedResponse[i]);  \r",
+									"    }\r",
+									"});\r",
+									"  \r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"  pm.expect(response.to.have.status(\"Bad Request\")); \r",
+									"  console.log(\"Error: Bad Request\" +\"\\n\"\r",
+									"                +\"Message Error: \"+actualResponse.message); \r",
+									"});\r",
+									"   \r",
+									"pm.test(\"Response should be error\", function () { \r",
+									"    pm.expect(response.to.be.error); \r",
+									"}); \r",
+									"\r",
+									"pm.test(\"Check response time\", () => {  \r",
+									"  if (responseTime > responsLimit) {       \r",
+									"    console.log(\"Response time was longer than \" + responsLimit + \" ms \" + \"(\" + responseTime + \" ms)\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));\r",
+									"  }\r",
+									"  pm.expect(responseTime).to.be.below(responsLimit); \r",
+									"});\r",
+									" \r",
+									" pm.test(\"Response has charset in content-type header\", function () {\r",
+									"    pm.expect(pm.response.to.have.header(\"Content-Type\"));\r",
+									"    pm.expect(pm.response.to.have.header('Content-Type', 'application/json; charset=utf-8'));\r",
+									"});\r",
+									"  \r",
+									" \r",
+									" \r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/fe/v1/authorization/signup?email&password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"fe",
+								"v1",
+								"authorization",
+								"signup"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": null
+								},
+								{
+									"key": "password",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Email undefined & Password undefined",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response;\r",
+									"\r",
+									"const actualResponse = response.json();\r",
+									"var size = Object.keys(actualResponse).length;  \r",
+									"var responsLimit = 1000; \r",
+									"var responseTime = response.responseTime; \r",
+									" \r",
+									"pm.environment.set(\"UserAccessToken\",actualResponse.access_token);\r",
+									"   \r",
+									"tests[\"Size control\"] = size == 3;   \r",
+									"tests[\"Status code type control\"] = typeof(actualResponse.statusCode) === \"number\";\r",
+									"tests[\"Message type control\"] = typeof(actualResponse.message[0]) === \"string\";\r",
+									"tests[\"Error type control\"] = typeof(actualResponse.error) === \"string\";\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response control\", function () { \r",
+									"  pm.expect(response.to.have.status(400));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('message'));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('statusCode'));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('error'));\r",
+									"  \r",
+									"  pm.expect(response.to.be.withBody);\r",
+									"  pm.expect(response.to.be.json);\r",
+									"}); \r",
+									"  \r",
+									"var expectedResponse= [\r",
+									"            \"email should not be null or undefined\",\r",
+									"            \"email must be shorter than or equal to 100 characters\",\r",
+									"            \"email should not be empty\",\r",
+									"            \"email must be an email\",\r",
+									"            \"password should not be null or undefined\",\r",
+									"            \"password must be shorter than or equal to 20 characters\",\r",
+									"            \"password must be longer than or equal to 8 characters\",\r",
+									"            \"password should not be empty\",\r",
+									"            \"password must be a string\"\r",
+									"];\r",
+									"   \r",
+									"pm.test(\"Check response is true\", () => {\r",
+									"    for (var i = 0; i < expectedResponse.length; i++){\r",
+									"        pm.expect(actualResponse.message[i]).to.eql(expectedResponse[i]);  \r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"  pm.expect(response.to.have.status(\"Bad Request\")); \r",
+									"  console.log(\"Error: Bad Request\" +\"\\n\"\r",
+									"                +\"Message Error: \"+actualResponse.message); \r",
+									"});\r",
+									"   \r",
+									"pm.test(\"Response should be error\", function () { \r",
+									"    pm.expect(response.to.be.error); \r",
+									"}); \r",
+									"\r",
+									"pm.test(\"Check response time\", () => {  \r",
+									"  if (responseTime > responsLimit) {       \r",
+									"    console.log(\"Response time was longer than \" + responsLimit + \" ms \" + \"(\" + responseTime + \" ms)\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));\r",
+									"  }\r",
+									"  pm.expect(responseTime).to.be.below(responsLimit); \r",
+									"});\r",
+									" \r",
+									" pm.test(\"Response has charset in content-type header\", function () {\r",
+									"    pm.expect(pm.response.to.have.header(\"Content-Type\"));\r",
+									"    pm.expect(pm.response.to.have.header('Content-Type', 'application/json; charset=utf-8'));\r",
+									"});\r",
+									"  \r",
+									" \r",
+									" \r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/fe/v1/authorization/signup",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"fe",
+								"v1",
+								"authorization",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Email undefined & Password null",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response;\r",
+									"\r",
+									"const actualResponse = response.json();\r",
+									"var size = Object.keys(actualResponse).length;  \r",
+									"var responsLimit = 1000; \r",
+									"var responseTime = response.responseTime; \r",
+									" \r",
+									"pm.environment.set(\"UserAccessToken\",actualResponse.access_token);\r",
+									" \r",
+									" \r",
+									"tests[\"Size control\"] = size == 3;   \r",
+									"tests[\"Status code type control\"] = typeof(actualResponse.statusCode) === \"number\";\r",
+									"tests[\"Message type control\"] = typeof(actualResponse.message[0]) === \"string\";\r",
+									"tests[\"Error type control\"] = typeof(actualResponse.error) === \"string\";\r",
+									"  \r",
+									"pm.test(\"Response control\", function () { \r",
+									"  pm.expect(response.to.have.status(400));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('message'));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('statusCode'));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('error'));\r",
+									"  \r",
+									"  pm.expect(response.to.be.withBody);\r",
+									"  pm.expect(response.to.be.json);\r",
+									"}); \r",
+									"\r",
+									"\r",
+									"var expectedResponse= [\r",
+									"            \"email should not be null or undefined\",\r",
+									"            \"email must be shorter than or equal to 100 characters\",\r",
+									"            \"email should not be empty\",\r",
+									"            \"email must be an email\",\r",
+									"            \"password should not be null or undefined\",\r",
+									"            \"password must be shorter than or equal to 20 characters\",\r",
+									"            \"password must be longer than or equal to 8 characters\",\r",
+									"            \"password should not be empty\",\r",
+									"            \"password must be a string\"\r",
+									"];\r",
+									"   \r",
+									"pm.test(\"Check response is true\", () => {\r",
+									"    for (var i = 0; i < expectedResponse.length; i++){\r",
+									"        pm.expect(actualResponse.message[i]).to.eql(expectedResponse[i]);  \r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"  pm.expect(response.to.have.status(\"Bad Request\")); \r",
+									"  console.log(\"Error: Bad Request\" +\"\\n\"\r",
+									"                +\"Message Error: \"+actualResponse.message); \r",
+									"});\r",
+									"   \r",
+									"pm.test(\"Response should be error\", function () { \r",
+									"    pm.expect(response.to.be.error); \r",
+									"}); \r",
+									"\r",
+									"pm.test(\"Check response time\", () => {  \r",
+									"  if (responseTime > responsLimit) {       \r",
+									"    console.log(\"Response time was longer than \" + responsLimit + \" ms \" + \"(\" + responseTime + \" ms)\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));\r",
+									"  }\r",
+									"  pm.expect(responseTime).to.be.below(responsLimit); \r",
+									"});\r",
+									" \r",
+									" pm.test(\"Response has charset in content-type header\", function () {\r",
+									"    pm.expect(pm.response.to.have.header(\"Content-Type\"));\r",
+									"    pm.expect(pm.response.to.have.header('Content-Type', 'application/json; charset=utf-8'));\r",
+									"});\r",
+									"  \r",
+									" \r",
+									" \r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/fe/v1/authorization/signup?password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"fe",
+								"v1",
+								"authorization",
+								"signup"
+							],
+							"query": [
+								{
+									"key": "password",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Password is short character",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"randomGmail\", _.random(15555, 566666)+\"onur@gmail.com\")\r",
+									"pm.environment.set(\"randomPassword\", _.random(100, 1000))"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response;\r",
+									"\r",
+									"const actualResponse = response.json();\r",
+									"var size = Object.keys(actualResponse).length;  \r",
+									"var responsLimit = 1000; \r",
+									"var responseTime = response.responseTime; \r",
+									" \r",
+									"pm.environment.set(\"UserAccessToken\",actualResponse.access_token);\r",
+									" \r",
+									"\r",
+									"tests[\"Size control\"] = size == 3;   \r",
+									"tests[\"Status code type control\"] = typeof(actualResponse.statusCode) === \"number\";\r",
+									"tests[\"Message type control\"] = typeof(actualResponse.message[0]) === \"string\";\r",
+									"tests[\"Error type control\"] = typeof(actualResponse.error) === \"string\";\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response control\", function () { \r",
+									"  pm.expect(response.to.have.status(400));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('message'));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('statusCode'));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('error'));\r",
+									"  \r",
+									"  pm.expect(response.to.be.withBody);\r",
+									"  pm.expect(response.to.be.json);\r",
+									"}); \r",
+									"\r",
+									"var expectedResponse= (\r",
+									"            \"password must be longer than or equal to 8 characters\"\r",
+									");\r",
+									"   \r",
+									"pm.test(\"Check response is true\", () => {\r",
+									"    pm.expect(actualResponse.message[0]).to.eql(expectedResponse); \r",
+									"});\r",
+									"\r",
+									" \r",
+									"\r",
+									"  \r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"  pm.expect(response.to.have.status(\"Bad Request\")); \r",
+									"  console.log(\"Error: Bad Request\" +\"\\n\"\r",
+									"                +\"Message Error: \"+actualResponse.message); \r",
+									"});\r",
+									"   \r",
+									"pm.test(\"Response should be error\", function () { \r",
+									"    pm.expect(response.to.be.error); \r",
+									"}); \r",
+									"\r",
+									"pm.test(\"Check response time\", () => {  \r",
+									"  if (responseTime > responsLimit) {       \r",
+									"    console.log(\"Response time was longer than \" + responsLimit + \" ms \" + \"(\" + responseTime + \" ms)\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));\r",
+									"  }\r",
+									"  pm.expect(responseTime).to.be.below(responsLimit); \r",
+									"});\r",
+									" \r",
+									" pm.test(\"Response has charset in content-type header\", function () {\r",
+									"    pm.expect(pm.response.to.have.header(\"Content-Type\"));\r",
+									"    pm.expect(pm.response.to.have.header('Content-Type', 'application/json; charset=utf-8'));\r",
+									"});\r",
+									"  \r",
+									" \r",
+									" \r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{randomGmail}}\",\r\n    \"password\":\"{{randomPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/fe/v1/authorization/signup",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"fe",
+								"v1",
+								"authorization",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Password is long character",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"randomGmail\", _.random(15555, 566666)+\"onur@gmail.com\")\r",
+									"pm.environment.set(\"randomPassword\", _.random(100000, 1000000)+\"onurerdemiroglu\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response;\r",
+									"\r",
+									"const actualResponse = response.json();\r",
+									"var size = Object.keys(actualResponse).length;  \r",
+									"var responsLimit = 1000; \r",
+									"var responseTime = response.responseTime; \r",
+									" \r",
+									"pm.environment.set(\"UserAccessToken\",actualResponse.access_token);\r",
+									" \r",
+									"\r",
+									"tests[\"Size control\"] = size == 3;   \r",
+									"tests[\"Status code type control\"] = typeof(actualResponse.statusCode) === \"number\";\r",
+									"tests[\"Message type control\"] = typeof(actualResponse.message[0]) === \"string\";\r",
+									"tests[\"Error type control\"] = typeof(actualResponse.error) === \"string\";\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response control\", function () { \r",
+									"  pm.expect(response.to.have.status(400));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('message'));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('statusCode'));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('error'));\r",
+									"  \r",
+									"  pm.expect(response.to.be.withBody);\r",
+									"  pm.expect(response.to.be.json);\r",
+									"}); \r",
+									"\r",
+									"var expectedResponse= (\r",
+									"            \"password must be shorter than or equal to 20 characters\"\r",
+									");\r",
+									"   \r",
+									"pm.test(\"Check response is true\", () => {\r",
+									"    pm.expect(actualResponse.message[0]).to.eql(expectedResponse); \r",
+									"});\r",
+									" \r",
+									"  \r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"  pm.expect(response.to.have.status(\"Bad Request\")); \r",
+									"  console.log(\"Error: Bad Request\" +\"\\n\"\r",
+									"                +\"Message Error: \"+actualResponse.message); \r",
+									"});\r",
+									"   \r",
+									"pm.test(\"Response should be error\", function () { \r",
+									"    pm.expect(response.to.be.error); \r",
+									"}); \r",
+									"\r",
+									"pm.test(\"Check response time\", () => {  \r",
+									"  if (responseTime > responsLimit) {       \r",
+									"    console.log(\"Response time was longer than \" + responsLimit + \" ms \" + \"(\" + responseTime + \" ms)\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));\r",
+									"  }\r",
+									"  pm.expect(responseTime).to.be.below(responsLimit); \r",
+									"});\r",
+									" \r",
+									" pm.test(\"Response has charset in content-type header\", function () {\r",
+									"    pm.expect(pm.response.to.have.header(\"Content-Type\"));\r",
+									"    pm.expect(pm.response.to.have.header('Content-Type', 'application/json; charset=utf-8'));\r",
+									"});\r",
+									"  \r",
+									" \r",
+									" \r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{randomGmail}}\",\r\n    \"password\":\"{{randomPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/fe/v1/authorization/signup",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"fe",
+								"v1",
+								"authorization",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Password type is not character",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"randomGmail\", _.random(15555, 566666)+\"onur@gmail.com\") "
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response;\r",
+									"\r",
+									"const actualResponse = response.json();\r",
+									"var size = Object.keys(actualResponse).length;  \r",
+									"var responsLimit = 1000; \r",
+									"var responseTime = response.responseTime; \r",
+									" \r",
+									"pm.environment.set(\"UserAccessToken\",actualResponse.access_token);\r",
+									"  \r",
+									"tests[\"Size control\"] = size == 3;   \r",
+									"tests[\"Status code type control\"] = typeof(actualResponse.statusCode) === \"number\";\r",
+									"tests[\"Message type control\"] = typeof(actualResponse.message[0]) === \"string\";\r",
+									"tests[\"Error type control\"] = typeof(actualResponse.error) === \"string\";\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response control\", function () { \r",
+									"  pm.expect(response.to.have.status(400));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('message'));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('statusCode'));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('error'));\r",
+									"   \r",
+									"  pm.expect(response.to.be.withBody);\r",
+									"  pm.expect(response.to.be.json);\r",
+									"}); \r",
+									"\r",
+									"var expectedResponse= [\r",
+									"          \"password must be shorter than or equal to 20 characters\",\r",
+									"          \"password must be longer than or equal to 8 characters\",\r",
+									"          \"password must be a string\"\r",
+									"];\r",
+									"   \r",
+									"pm.test(\"Check response is true\", () => {\r",
+									"    for (var i = 0; i < expectedResponse.length; i++){\r",
+									"        pm.expect(actualResponse.message[i]).to.eql(expectedResponse[i]);  \r",
+									"    }\r",
+									"});\r",
+									"  \r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"  pm.expect(response.to.have.status(\"Bad Request\")); \r",
+									"  console.log(\"Error: Bad Request\" +\"\\n\"\r",
+									"                +\"Message Error: \"+actualResponse.message); \r",
+									"});\r",
+									"   \r",
+									"pm.test(\"Response should be error\", function () { \r",
+									"    pm.expect(response.to.be.error); \r",
+									"}); \r",
+									"\r",
+									"pm.test(\"Check response time\", () => {  \r",
+									"  if (responseTime > responsLimit) {       \r",
+									"    console.log(\"Response time was longer than \" + responsLimit + \" ms \" + \"(\" + responseTime + \" ms)\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));\r",
+									"  }\r",
+									"  pm.expect(responseTime).to.be.below(responsLimit); \r",
+									"});\r",
+									" \r",
+									" pm.test(\"Response has charset in content-type header\", function () {\r",
+									"    pm.expect(pm.response.to.have.header(\"Content-Type\"));\r",
+									"    pm.expect(pm.response.to.have.header('Content-Type', 'application/json; charset=utf-8'));\r",
+									"});\r",
+									"  \r",
+									" \r",
+									" \r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{randomGmail}}\",\r\n    \"password\": 123456789\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/fe/v1/authorization/signup",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"fe",
+								"v1",
+								"authorization",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Not email type",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"randomGmail\", [_.random(15555, 566666)]) \r",
+									"pm.environment.set(\"randomPassword\", _.random(15555, 566666)+\"onur\")"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response;\r",
+									"\r",
+									"const actualResponse = response.json();\r",
+									"var size = Object.keys(actualResponse).length;  \r",
+									"var responsLimit = 1000; \r",
+									"var responseTime = response.responseTime; \r",
+									" \r",
+									"pm.environment.set(\"UserAccessToken\",actualResponse.access_token);\r",
+									"  \r",
+									"tests[\"Size control\"] = size == 3;   \r",
+									"tests[\"Status code type control\"] = typeof(actualResponse.statusCode) === \"number\";\r",
+									"tests[\"Message type control\"] = typeof(actualResponse.message[0]) === \"string\";\r",
+									"tests[\"Error type control\"] = typeof(actualResponse.error) === \"string\";\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response control\", function () { \r",
+									"  pm.expect(response.to.have.status(400));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('message'));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('statusCode'));\r",
+									"  pm.expect(pm.response.to.have.jsonBody('error'));\r",
+									"   \r",
+									"  pm.expect(response.to.be.withBody);\r",
+									"  pm.expect(response.to.be.json);\r",
+									"}); \r",
+									"\r",
+									"var expectedResponse= [\r",
+									"          \"email must be an email\"\r",
+									"];\r",
+									"   \r",
+									"pm.test(\"Check response is true\", () => {\r",
+									"    for (var i = 0; i < expectedResponse.length; i++){\r",
+									"        pm.expect(actualResponse.message[i]).to.eql(expectedResponse[i]);  \r",
+									"    }\r",
+									"});\r",
+									"  \r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"  pm.expect(response.to.have.status(\"Bad Request\")); \r",
+									"  console.log(\"Error: Bad Request\" +\"\\n\"\r",
+									"                +\"Message Error: \"+actualResponse.message); \r",
+									"});\r",
+									"   \r",
+									"pm.test(\"Response should be error\", function () { \r",
+									"    pm.expect(response.to.be.error); \r",
+									"}); \r",
+									"\r",
+									"pm.test(\"Check response time\", () => {  \r",
+									"  if (responseTime > responsLimit) {       \r",
+									"    console.log(\"Response time was longer than \" + responsLimit + \" ms \" + \"(\" + responseTime + \" ms)\" + \" / Response Date: \" + pm.response.headers.get(\"Date\"));\r",
+									"  }\r",
+									"  pm.expect(responseTime).to.be.below(responsLimit); \r",
+									"});\r",
+									" \r",
+									" pm.test(\"Response has charset in content-type header\", function () {\r",
+									"    pm.expect(pm.response.to.have.header(\"Content-Type\"));\r",
+									"    pm.expect(pm.response.to.have.header('Content-Type', 'application/json; charset=utf-8'));\r",
+									"});\r",
+									"  \r",
+									" \r",
+									" \r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{randomGmail}}\",\r\n    \"password\": \"{{randomPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/fe/v1/authorization/signup",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"fe",
+								"v1",
+								"authorization",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "UserAccessToken",
+			"value": ""
+		}
+	]
+}
