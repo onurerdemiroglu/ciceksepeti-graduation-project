@@ -10,6 +10,7 @@
         "dependencies": {
           "DotNetSeleniumExtras.PageObjects.Core": "4.0.1",
           "DotNetSeleniumExtras.WaitHelpers": "3.11.0",
+          "InputSimulator": "1.0.4",
           "Microsoft.NET.Test.Sdk": "16.5.0",
           "Microsoft.TestPlatform.TestHost": "17.0.0",
           "NUnit": "3.13.2",
@@ -79,6 +80,14 @@
           "lib/netstandard2.0/Gherkin.dll": {
             "assemblyVersion": "19.0.3.0",
             "fileVersion": "19.0.3.0"
+          }
+        }
+      },
+      "InputSimulator/1.0.4": {
+        "runtime": {
+          "lib/net20/WindowsInput.dll": {
+            "assemblyVersion": "1.0.4.0",
+            "fileVersion": "1.0.4.0"
           }
         }
       },
@@ -1401,6 +1410,13 @@
       "sha512": "sha512-kq9feqMojMj9aABrHb/ABEPaH2Y4dSclseSahAru6qxCeqVQNLLTgw/6vZMauzI1yBUL2fz03ub5yEd5btLfvg==",
       "path": "gherkin/19.0.3",
       "hashPath": "gherkin.19.0.3.nupkg.sha512"
+    },
+    "InputSimulator/1.0.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-D0LvRCPQMX6/FJHBjng+RO+wRDuHTJrfo7IAc7rmkPvRqchdVGJWg3y70peOtDy3OLNK+HSOwVkH4GiuLnkKgA==",
+      "path": "inputsimulator/1.0.4",
+      "hashPath": "inputsimulator.1.0.4.nupkg.sha512"
     },
     "Microsoft.CodeCoverage/16.5.0": {
       "type": "package",

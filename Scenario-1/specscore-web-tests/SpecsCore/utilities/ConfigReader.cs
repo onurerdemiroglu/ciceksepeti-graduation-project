@@ -1,6 +1,5 @@
 using System.IO;
 using System;
-using System.Configuration;
 using Newtonsoft.Json.Linq;
 
 public class ConfigReader

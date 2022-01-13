@@ -1,6 +1,4 @@
-using System;
 using TechTalk.SpecFlow;
-using OpenQA.Selenium;
 
 [Binding]
 public class MenuSteps
@@ -18,7 +16,7 @@ public class MenuSteps
     [When(@"I sort result list based on (.*)")]
     public void SortResult(string sortCriterion)
     {
-        _menuPage.SelectPriceHighToLow(sortCriterion);
+        _menuPage.SortByCriteria(sortCriterion);
     }
 
 
@@ -51,6 +49,17 @@ public class MenuSteps
     }
 
 
+    [When(@"I find all the links under the menu")]
+    public void FindMenuLinks()
+    {
+        _menuPage.FindMenuLinks();
+    }
+
+    [Then(@"I should see the links are not broken")]
+    public void VerifyLinks()
+    {
+        _menuPage.VerifyLinks();
+    }
 
 
 

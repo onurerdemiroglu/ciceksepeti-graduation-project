@@ -1,26 +1,15 @@
-using System.Reflection;
-using System.Xml;
-using System.Data;
-using System;
 using TechTalk.SpecFlow;
-using NUnit.Framework;
-using TechTalk.SpecFlow.Plugins;
-using TechTalk.SpecFlow.NUnit;
-using TechTalk.SpecFlow.Infrastructure;
-using OpenQA.Selenium;
 
 [Binding]
 public class OrderSteps
 {
     OrderPage _orderPage = new OrderPage();
-    Helper _helper = new Helper();
 
     [When(@"I fill out the order information form")]
     public void FillOrderInformationForm()
     {
         _orderPage.FillOrderInformationForm();
     }
-
 
     [When(@"I fill out the sender information form")]
     public void FillSenderInformationForm()
@@ -42,6 +31,16 @@ public class OrderSteps
     }
 
 
+    [When(@"I customize the product and click next button")]
+    public void PersonalizeProduct()
+    {
+        _orderPage.PersonalizeProduct();
+    }
 
+    [Then(@"I should see the product added to basket")]
+    public void VerifyProductAddedToBasket()
+    {
+        _orderPage.VerifyProductAddedToBasket();
+    }
 
 }

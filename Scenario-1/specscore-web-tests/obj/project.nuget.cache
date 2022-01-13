@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "v5zYUBM1dcFcf9ivzThJVSqzR316B+4i9rVaX6HCh+7cVtqAcQFBlXdoWCQMbwuS5k3hY1qKaU6jhonUihICew==",
+  "dgSpecHash": "Ia6R6ymxsD/Bl3g0aafuq0xzR4ew89iaMcmUvdKWFRvrbzCy4qHUERSurfv2P6uO1Q9YOkWcyvChL6ofURAH2A==",
   "success": true,
   "projectFilePath": "C:\\Users\\monst\\OneDrive\\Masaüstü\\SpecsCoreWebTests\\SpecsCoreWebTests.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "C:\\Users\\monst\\.nuget\\packages\\dotnetseleniumextras.pageobjects.core\\4.0.1\\dotnetseleniumextras.pageobjects.core.4.0.1.nupkg.sha512",
     "C:\\Users\\monst\\.nuget\\packages\\dotnetseleniumextras.waithelpers\\3.11.0\\dotnetseleniumextras.waithelpers.3.11.0.nupkg.sha512",
     "C:\\Users\\monst\\.nuget\\packages\\gherkin\\19.0.3\\gherkin.19.0.3.nupkg.sha512",
+    "C:\\Users\\monst\\.nuget\\packages\\inputsimulator\\1.0.4\\inputsimulator.1.0.4.nupkg.sha512",
     "C:\\Users\\monst\\.nuget\\packages\\microsoft.codecoverage\\16.5.0\\microsoft.codecoverage.16.5.0.nupkg.sha512",
     "C:\\Users\\monst\\.nuget\\packages\\microsoft.dotnet.internalabstractions\\1.0.0\\microsoft.dotnet.internalabstractions.1.0.0.nupkg.sha512",
     "C:\\Users\\monst\\.nuget\\packages\\microsoft.dotnet.platformabstractions\\1.0.3\\microsoft.dotnet.platformabstractions.1.0.3.nupkg.sha512",
@@ -123,5 +124,16 @@
     "C:\\Users\\monst\\.nuget\\packages\\webdrivermanager\\2.12.3\\webdrivermanager.2.12.3.nupkg.sha512",
     "C:\\Users\\monst\\.nuget\\packages\\webdriverwaitextensions\\2.0.2\\webdriverwaitextensions.2.0.2.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "'InputSimulator 1.0.4' paketi, proje hedef çerçevesi 'net5.0' yerine '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' kullanılarak geri yüklendi. Bu paket projenizle tamamen uyumlu olmayabilir.",
+      "libraryId": "InputSimulator",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
 }

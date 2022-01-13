@@ -34,7 +34,7 @@ Feature: Mizu Web UI Tests
 
 
     @casefour @Payment_validWithOxxo
-    Scenario: Payment check with "OXXO"
+    Scenario: Payment Check With "OXXO"
         Given I open the 'flowers' url
         When  I choose shipping address 'mexico city'
         And   I open the first product page
@@ -46,21 +46,17 @@ Feature: Mizu Web UI Tests
         Then  I should see the message we received your order
 
 
-    @casefive @positive
-    Scenario: Customize and add product to the basket
+    @casefive @Product_customizeAndBasket
+    Scenario: Customizing Product And Add To Basket
         Given I open the 'en-mx/portarretratos-de-cristal-personalizado-cancion-kcm64138299' url
         When  I add product to basket
-        Then  I customize the product
+        And   I customize the product and click next button
+        Then  I should see the product added to basket
 
 
-
-    @casesix @positive
-    Scenario: Kırık link kontrolü
+    @casesix @Menu_brokenLinks
+    Scenario: Checking If Menu Links Are Broken
         Given I am on the home page
         When  I close the address focus on the home page
-        When test
-
-
-
-
-
+        And   I find all the links under the menu
+        Then  I should see the links are not broken

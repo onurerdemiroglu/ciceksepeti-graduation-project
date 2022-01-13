@@ -1,13 +1,14 @@
-
+using System.Net;
+using System.Net.Http;
 using System.IO;
-using System.Text.RegularExpressions;
-using System.Threading;
 using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Interactions;
 using SeleniumExtras.WaitHelpers;
-
+using WindowsInput;
+using WindowsInput.Native;
+using System.Threading;
 
 public class Helper
 {
@@ -18,13 +19,20 @@ public class Helper
     public void MouseOver(IWebElement element)
     {
         Actions builder = new Actions(driver);
-        builder.MoveToElement(element).Build().Perform();
+        wait.Until(ExpectedConditions.ElementToBeClickable(element));
+        builder.MoveToElement(element).ClickAndHold().Build().Perform();
     }
 
     public void waitClickable(IWebElement element)
     {
         wait.Until(ExpectedConditions.ElementToBeClickable(element));
     }
+
+    public void waitElementExist(By by)
+    {
+        wait.Until(ExpectedConditions.ElementExists(by));
+    }
+
 
     public void DragAndDrop(By From, By To)
     {
@@ -42,12 +50,28 @@ public class Helper
         element.Click();
     }
 
+    public void CloseOpenFileDialog()
+    {
+        Thread.Sleep(1000);
+        InputSimulator sim = new InputSimulator();
+        sim.Keyboard.KeyPress(VirtualKeyCode.ESCAPE);
+    }
     public void SendKeysElement(IWebElement element, String value)
     {
         wait.Until(ExpectedConditions.ElementToBeClickable(element));
         element.SendKeys(value);
     }
 
+    public void JsClick(IWebElement element)
+    {
+        IJavaScriptExecutor executor = (IJavaScriptExecutor)Driver.get();
+        executor.ExecuteScript("arguments[0].click();", element);
+    }
+    public void JsSendValue(IWebElement element, string value)
+    {
+        IJavaScriptExecutor executor = (IJavaScriptExecutor)Driver.get();
+        executor.ExecuteScript("arguments[0].value='" + value + "';", element);
+    }
     public string GetText(By by)
     {
         IWebElement element = driver.FindElement(by);
@@ -84,13 +108,50 @@ public class Helper
         ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
         return element;
     }
+    public string IsLinkWorking(string url)
+    {
+        var webClient = new HttpClient();
+        var response = webClient.GetAsync(url).Result;
 
-    public void ScrollTo(By by)
+        if (response.StatusCode == HttpStatusCode.NotFound)
+        {
+            return url + " is broken";
+        }
+        else
+        {
+            return "link is not broken";
+        }
+    }
+    public string IsLinkBroken(string url)
+    {
+        HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);
+        request.AllowAutoRedirect = true;
+
+        try
+        {
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                response.Close();
+                return "link is not broken";
+            }
+            else
+            {
+                return url + " is broken";
+            }
+        }
+        catch
+        {
+            return url + " is broken";
+        }
+    }
+
+    public void ScrollToElement(By by)
     {
         IWebElement element = driver.FindElement(by);
         ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
     }
-    public string Ocr()
+    public string Ocr() //  ciceksepeti login bypass captcha
     {
         var ocr = new Tesseract.TesseractEngine(System.IO.Directory.GetCurrent‌​Directory() + "\\tessdata", "tur", Tesseract.EngineMode.Default);
         var page = ocr.Process(Tesseract.Pix.LoadFromFile(System.IO.Directory.GetCurrent‌​Directory() + @"\CaptchaImage\captcha.png"));
@@ -107,13 +168,6 @@ public class Helper
 
         return (num1 + num2).ToString();
     }
-
-
-    public void test()
-    {
-
-    }
-
 
 
 }

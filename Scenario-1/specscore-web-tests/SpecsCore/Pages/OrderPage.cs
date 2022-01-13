@@ -1,11 +1,5 @@
-using System.Threading;
-using System.Runtime.InteropServices;
-using System.Reflection;
-using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
-using OpenQA.Selenium.Interactions;
 using NUnit.Framework;
-
+using System.IO;
 public class OrderPage
 {
     Helper _helper = new Helper();
@@ -16,10 +10,8 @@ public class OrderPage
     {
         _helper.SendKeysElement(_orderPageObject.RecipientName, "CicekSepeti Bootcamp");
         _helper.SendKeysElement(_orderPageObject.RecipientPhoneNumber, "1252152134");
-
         _helper.SendKeysElement(_orderPageObject.FindAddressSection, "Mexico City");
         _helper.MouseOver(_orderPageObject.AddressResults[0]);
-        _helper.ClickElement(_orderPageObject.AddressResults[0]);
         _helper.WaitForAjax();
         _helper.SendKeysElement(_orderPageObject.ExteriorInteriorNo, "21");
         _helper.SendKeysElement(_orderPageObject.PostalCode, "02820");
@@ -39,6 +31,7 @@ public class OrderPage
         _helper.ClickElement(_orderPageObject.FirstCountryCode);
         _helper.SendKeysElement(_orderPageObject.PhoneNumber, "1231232133");
         _helper.SendKeysElement(_orderPageObject.Email, "ciceksepetioe@gmail.com");
+
         _helper.ClickElement(_orderPageObject.NextOrderButton);
     }
 
@@ -54,6 +47,23 @@ public class OrderPage
         _helper.waitClickable(_orderPageObject.CardMessageTextArea);
 
         Assert.IsTrue(_orderPageObject.ThanksMessageText.Displayed);
+    }
 
+    public void PersonalizeProduct()
+    {
+        string imagePath = Directory.GetCurrent‌​Directory() + "\\image.png";
+        string personalizeText = "CicekSepeti Bootcamp";
+
+        _helper.SendKeysElement(_orderPageObject.PersonalizeParagraph, personalizeText);
+        _helper.JsClick(_orderPageObject.PersonalizeUpload);
+        _orderPageObject.PersonalizeUpload.SendKeys(imagePath);
+        _helper.CloseOpenFileDialog();
+        _helper.ClickElement(_orderPageObject.ConfirmDesign);
+        _helper.ClickElement(_orderPageObject.NextOrderButton);
+    }
+
+    public void VerifyProductAddedToBasket()
+    {
+        Assert.IsTrue(_orderPageObject.ProductTitle.Displayed);
     }
 }

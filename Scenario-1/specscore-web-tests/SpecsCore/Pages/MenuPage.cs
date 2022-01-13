@@ -1,32 +1,37 @@
+using System.Collections.Generic;
 using OpenQA.Selenium;
 using System;
 using NUnit.Framework;
+using System.Linq;
 
 public class MenuPage
 {
-
     Helper _helper = new Helper();
     MenuPageObject _menuPageObject = new MenuPageObject();
+    List<string> links = new List<string>();
+    List<string> uniqueMenuLinks = new List<string>();
 
     public void DownPage(int pageNumber, int perPageProduct)
     {
         for (int i = 1; i < pageNumber; i++)
         {
-            if (!Driver.get().Url.Contains("page=" + pageNumber.ToString()))
+            if (!Driver.get().Url.Contains("page=" + pageNumber.ToString())) // ? Is page value equal to i in url?
             {
-                _helper.WaitForAjax();
+                int totalProductInPage = _menuPageObject.ProductArray.Count;
+                string lastProductLocator = ".js-category-item-hover:nth-child(" + Convert.ToString(totalProductInPage) + ")";
+                string lastProductNewPage = ".js-category-item-hover:nth-child(" + Convert.ToString(totalProductInPage + perPageProduct) + ")";
 
-                int TotalProduct = _menuPageObject.ProductArray.Count;
-                string LastProductLocator = ".js-category-item-hover:nth-child(" + Convert.ToString(TotalProduct) + ")";
 
-                Assert.AreEqual(perPageProduct * i, TotalProduct);
+                Assert.AreEqual(perPageProduct * i, totalProductInPage);
 
-                _helper.ScrollTo(By.CssSelector(LastProductLocator));
+                _helper.ScrollToElement(By.CssSelector(lastProductLocator));
+                _helper.waitElementExist(By.CssSelector(lastProductNewPage)); // ? Wait for the exist of new products on the page
+
             }
         }
     }
 
-    public void SelectPriceHighToLow(string sortCriterion)
+    public void SortByCriteria(string sortCriterion)
     {
         IWebElement locator = Driver.get().FindElement(By.XPath("//*[text()='" + sortCriterion + "']"));
 
@@ -40,15 +45,15 @@ public class MenuPage
         Double[] PriceArray = new Double[TotalProduct + 1];
 
 
-        for (int i = 1; i <= TotalProduct; i++)  // Product prices are added to the array
+        for (int i = 1; i <= TotalProduct; i++)  // ? Product prices are added to the array
         {
             string locatorPriceInt = "(//span[@class='price__integer-value'])[" + i.ToString() + "]";
             string locatorPriceDec = "(//span[@class='price__decimal-value-with-currency'])[" + i.ToString() + "]";
 
             double priceInt = Double.Parse(Driver.get().FindElement(By.XPath(locatorPriceInt)).Text);
-            double PriceDec = Double.Parse("0" + Driver.get().FindElement(By.XPath(locatorPriceDec)).Text);
+            double priceDec = Double.Parse("0" + Driver.get().FindElement(By.XPath(locatorPriceDec)).Text);
 
-            PriceArray[i] = priceInt + PriceDec;
+            PriceArray[i] = priceInt + priceDec;
         }
 
         for (int i = 1; i < TotalProduct; i++)
@@ -67,6 +72,49 @@ public class MenuPage
     public void OpenFirstProductPage()
     {
         _helper.ClickElement(_menuPageObject.ProductArray[0]);
+    }
+
+    public void FindMenuLinks()
+    {
+        for (int j = 0; j < _menuPageObject.MainMenuLinks.Count; j++)   // ? Hover all menus
+        {
+            _helper.MouseOver(_menuPageObject.MainMenuLinks[j]); // ?Hover Main Menu
+
+            for (int i = 0; i < _menuPageObject.SubMenuLinks.Count; i++)
+            {
+                if (_menuPageObject.SubMenuLinks[i].Displayed)
+                {
+                    _helper.MouseOver(_menuPageObject.SubMenuLinks[i]);  // ? Hover Sub Menu
+                }
+            }
+        }
+
+        foreach (var item in _menuPageObject.MainMenuLinks)  // ? Get Main Menu Links
+            links.Add(item.GetAttribute("href"));
+
+        foreach (var item in _menuPageObject.SubMenuLinks) // ? Get Sub Menu Links
+            links.Add(item.GetAttribute("href"));
+
+        foreach (var item in _menuPageObject.SubMenuItemsLinks) // ? Get Sub Menu Items Links
+            links.Add(item.GetAttribute("href"));
+
+        foreach (var item in _menuPageObject.SubMenuItemsLinks2) // ? Get Sub Menu Items Links (Defined in 2 different places)
+            links.Add(item.GetAttribute("href"));
+    }
+
+
+
+    public void VerifyLinks()
+    {
+        uniqueMenuLinks = links.
+                            Where(s => !string.IsNullOrWhiteSpace(s)).
+                            Distinct().ToList();   // ? empty and same data is cleared
+
+
+        foreach (var item in uniqueMenuLinks)
+        {
+            Assert.AreEqual(_helper.IsLinkBroken(item), "link is not broken");
+        }
     }
 
 

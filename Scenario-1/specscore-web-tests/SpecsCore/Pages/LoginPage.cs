@@ -1,8 +1,4 @@
-using System.IO;
-using System.Drawing;
-using System.Drawing.Imaging;
-using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
+
 
 
 public class LoginPage

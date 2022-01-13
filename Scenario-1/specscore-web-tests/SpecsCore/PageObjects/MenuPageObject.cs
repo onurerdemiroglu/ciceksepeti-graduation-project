@@ -8,6 +8,10 @@ public class MenuPageObject
     public IWebElement AddressSearchInput => Driver.get().FindElement(MenuPageLocators.AddressSearchInput);
     public ReadOnlyCollection<IWebElement> AddressResults => Driver.get().FindElements(MenuPageLocators.AddressResults);
     public ReadOnlyCollection<IWebElement> ProductArray => Driver.get().FindElements(MenuPageLocators.ProductArray);
+    public ReadOnlyCollection<IWebElement> MainMenuLinks => Driver.get().FindElements(MenuPageLocators.MainMenuLinks);
+    public ReadOnlyCollection<IWebElement> SubMenuLinks => Driver.get().FindElements(MenuPageLocators.SubMenuLinks);
+    public ReadOnlyCollection<IWebElement> SubMenuItemsLinks => Driver.get().FindElements(MenuPageLocators.SubMenuItemsLinks);
+    public ReadOnlyCollection<IWebElement> SubMenuItemsLinks2 => Driver.get().FindElements(MenuPageLocators.SubMenuItemsLinks2);
 
     public static class MenuPageLocators
     {
@@ -16,8 +20,13 @@ public class MenuPageObject
         public static readonly By AddressSearchInput = By.CssSelector(".district-search__input");
         public static readonly By AddressResults = By.CssSelector(".district-search__link");
         public static readonly By ProductArray = By.CssSelector(".js-category-item-hover");
+        public static readonly By MainMenuLinks = By.CssSelector(".main-menu__link");
+        public static readonly By SubMenuLinks = By.CssSelector(".js-mega-menu-hover > a");
+        public static readonly By SubMenuItemsLinks = By.CssSelector(".main-submenu__item.no-more-submenu > a");
+        public static readonly By SubMenuItemsLinks2 = By.CssSelector(".main-submenu__item.no-more-sub > a");
 
     }
+
 
 
 

@@ -1,8 +1,4 @@
-using System.Runtime.InteropServices;
-using System.Reflection;
 using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
-using OpenQA.Selenium.Interactions;
 using NUnit.Framework;
 
 public class HomePage

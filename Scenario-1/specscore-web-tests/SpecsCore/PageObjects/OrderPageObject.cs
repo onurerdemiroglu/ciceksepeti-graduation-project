@@ -3,6 +3,9 @@ using OpenQA.Selenium;
 
 public class OrderPageObject
 {
+    public IWebElement PersonalizeParagraph => Driver.get().FindElement(OrderInformationLocators.PersonalizeParagraph);
+    public IWebElement PersonalizeUpload => Driver.get().FindElement(OrderInformationLocators.PersonalizeUpload);
+    public IWebElement ConfirmDesign => Driver.get().FindElement(OrderInformationLocators.ConfirmDesign);
     public IWebElement RecipientName => Driver.get().FindElement(OrderInformationLocators.RecipientName);
     public IWebElement RecipientPhoneNumber => Driver.get().FindElement(OrderInformationLocators.RecipientPhoneNumber);
     public IWebElement FindAddressSection => Driver.get().FindElement(OrderInformationLocators.FindAddressSection);
@@ -21,14 +24,18 @@ public class OrderPageObject
     public IWebElement OXXO => Driver.get().FindElement(PaymentLocators.OXXO);
     public IWebElement TermsCheckBox => Driver.get().FindElement(PaymentLocators.TermsCheckBox);
     public IWebElement PayButton => Driver.get().FindElement(PaymentLocators.PayButton);
-    public IWebElement CardMessageTextArea => Driver.get().FindElement(ReceivedOrderLocations.CardMessageTextArea);
-    public IWebElement ThanksMessageText => Driver.get().FindElement(ReceivedOrderLocations.ThanksMessageText);
+    public IWebElement CardMessageTextArea => Driver.get().FindElement(ReceivedOrderLocators.CardMessageTextArea);
+    public IWebElement ThanksMessageText => Driver.get().FindElement(ReceivedOrderLocators.ThanksMessageText);
+    public IWebElement ProductTitle => Driver.get().FindElement(BasketLocators.ProductTitle);
 
 
 
 
     public static class OrderInformationLocators
     {
+        public static readonly By PersonalizeParagraph = By.Id("dynamicText0");
+        public static readonly By PersonalizeUpload = By.CssSelector(".custom-image__input");
+        public static readonly By ConfirmDesign = By.CssSelector(".js-customize-confirmation-label");
         public static readonly By RecipientName = By.CssSelector(".js-address-name");
         public static readonly By RecipientPhoneNumber = By.CssSelector(".js-only-number");
         public static readonly By FindAddressSection = By.XPath("//input[@placeholder='Find your address']");
@@ -57,10 +64,16 @@ public class OrderPageObject
         public static readonly By PayButton = By.CssSelector(".js-confirm-basket");
     }
 
-    public static class ReceivedOrderLocations
+    public static class ReceivedOrderLocators
     {
         public static readonly By CardMessageTextArea = By.Id("cardMessageTextarea0");
         public static readonly By ThanksMessageText = By.CssSelector(".thanks__message-text");
+
+    }
+
+    public static class BasketLocators
+    {
+        public static readonly By ProductTitle = By.CssSelector(".cart__item-col-link");
 
     }
 

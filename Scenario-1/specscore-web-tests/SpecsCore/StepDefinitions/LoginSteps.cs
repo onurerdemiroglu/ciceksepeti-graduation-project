@@ -1,8 +1,5 @@
-using System.Xml;
-using System.Data;
-using System;
 using TechTalk.SpecFlow;
-using OpenQA.Selenium;
+using TechTalk.SpecFlow.Assist;
 
 [Binding]
 public class LoginSteps
@@ -13,7 +10,9 @@ public class LoginSteps
     [When(@"I logged in with the following data:")]
     public void Login(Table table)
     {
-        _loginPage.Login(table.Rows[0][0].ToString(), table.Rows[0][1].ToString());
+        var user = table.CreateInstance<(string mail, string password)>();
+
+        _loginPage.Login(user.mail, user.password);
     }
 
     [When(@"I click the Guest Checkout")]
