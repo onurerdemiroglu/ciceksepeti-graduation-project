@@ -26,6 +26,7 @@ public class Helper
     public void waitClickable(IWebElement element)
     {
         wait.Until(ExpectedConditions.ElementToBeClickable(element));
+        wait.Until(ExpectedConditions.ElementSelectionStateToBe(element, true));
     }
 
     public void waitElementExist(By by)

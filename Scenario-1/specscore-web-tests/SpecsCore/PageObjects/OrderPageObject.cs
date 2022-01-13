@@ -9,6 +9,7 @@ public class OrderPageObject
     public IWebElement RecipientName => Driver.get().FindElement(OrderInformationLocators.RecipientName);
     public IWebElement RecipientPhoneNumber => Driver.get().FindElement(OrderInformationLocators.RecipientPhoneNumber);
     public IWebElement FindAddressSection => Driver.get().FindElement(OrderInformationLocators.FindAddressSection);
+    public IWebElement AddressDetailSection => Driver.get().FindElement(OrderInformationLocators.AddressDetailSection);
     public ReadOnlyCollection<IWebElement> AddressResults => Driver.get().FindElements(OrderInformationLocators.AddressResults);
     public IWebElement ExteriorInteriorNo => Driver.get().FindElement(OrderInformationLocators.ExteriorInteriorNo);
     public IWebElement PostalCode => Driver.get().FindElement(OrderInformationLocators.PostalCode);
@@ -23,8 +24,10 @@ public class OrderPageObject
     public IWebElement Email => Driver.get().FindElement(SenderInformationLocators.Email);
     public IWebElement OXXO => Driver.get().FindElement(PaymentLocators.OXXO);
     public IWebElement TermsCheckBox => Driver.get().FindElement(PaymentLocators.TermsCheckBox);
+    public IWebElement TermsInfo => Driver.get().FindElement(PaymentLocators.TermsInfo);
+    public IWebElement TermsInfoAgreeButton => Driver.get().FindElement(PaymentLocators.TermsInfoAgreeButton);
     public IWebElement PayButton => Driver.get().FindElement(PaymentLocators.PayButton);
-    public IWebElement CardMessageTextArea => Driver.get().FindElement(ReceivedOrderLocators.CardMessageTextArea);
+    public IWebElement SaveGiftNoteButton => Driver.get().FindElement(ReceivedOrderLocators.SaveGiftNoteButton);
     public IWebElement ThanksMessageText => Driver.get().FindElement(ReceivedOrderLocators.ThanksMessageText);
     public IWebElement ProductTitle => Driver.get().FindElement(BasketLocators.ProductTitle);
 
@@ -39,6 +42,7 @@ public class OrderPageObject
         public static readonly By RecipientName = By.CssSelector(".js-address-name");
         public static readonly By RecipientPhoneNumber = By.CssSelector(".js-only-number");
         public static readonly By FindAddressSection = By.XPath("//input[@placeholder='Find your address']");
+        public static readonly By AddressDetailSection = By.CssSelector(".js-address-line");
         public static readonly By AddressResults = By.CssSelector(".product-location__results-item");
         public static readonly By ExteriorInteriorNo = By.CssSelector(".js-ext-int-no");
         public static readonly By PostalCode = By.CssSelector(".js-postal-code");
@@ -62,11 +66,13 @@ public class OrderPageObject
         public static readonly By OXXO = By.XPath("//*[text()='OXXO']");
         public static readonly By TermsCheckBox = By.XPath("//p[contains(text(), 'I accept the Terms and Conditions.')]");
         public static readonly By PayButton = By.CssSelector(".js-confirm-basket");
+        public static readonly By TermsInfo = By.CssSelector(".preliminary-info__confirmation-link");
+        public static readonly By TermsInfoAgreeButton = By.CssSelector(".agree-button");
     }
 
     public static class ReceivedOrderLocators
     {
-        public static readonly By CardMessageTextArea = By.Id("cardMessageTextarea0");
+        public static readonly By SaveGiftNoteButton = By.CssSelector(".card-message__send-btn");
         public static readonly By ThanksMessageText = By.CssSelector(".thanks__message-text");
 
     }

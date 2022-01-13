@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\monst\\OneDrive\\Masaüstü\\SpecsCoreWebTests\\SpecsCoreWebTests.csproj": {}
+    "C:\\Users\\monst\\OneDrive\\Masaüstü\\SpecsCoreWebTest\\SpecsCoreWebTests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\monst\\OneDrive\\Masaüstü\\SpecsCoreWebTests\\SpecsCoreWebTests.csproj": {
+    "C:\\Users\\monst\\OneDrive\\Masaüstü\\SpecsCoreWebTest\\SpecsCoreWebTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\monst\\OneDrive\\Masaüstü\\SpecsCoreWebTests\\SpecsCoreWebTests.csproj",
+        "projectUniqueName": "C:\\Users\\monst\\OneDrive\\Masaüstü\\SpecsCoreWebTest\\SpecsCoreWebTests.csproj",
         "projectName": "SpecsCoreWebTests",
-        "projectPath": "C:\\Users\\monst\\OneDrive\\Masaüstü\\SpecsCoreWebTests\\SpecsCoreWebTests.csproj",
+        "projectPath": "C:\\Users\\monst\\OneDrive\\Masaüstü\\SpecsCoreWebTest\\SpecsCoreWebTests.csproj",
         "packagesPath": "C:\\Users\\monst\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\monst\\OneDrive\\Masaüstü\\SpecsCoreWebTests\\obj\\",
+        "outputPath": "C:\\Users\\monst\\OneDrive\\Masaüstü\\SpecsCoreWebTest\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\monst\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,3 +1,4 @@
+using System.Threading;
 using NUnit.Framework;
 using System.IO;
 public class OrderPage
@@ -10,8 +11,9 @@ public class OrderPage
     {
         _helper.SendKeysElement(_orderPageObject.RecipientName, "CicekSepeti Bootcamp");
         _helper.SendKeysElement(_orderPageObject.RecipientPhoneNumber, "1252152134");
-        _helper.SendKeysElement(_orderPageObject.FindAddressSection, "Mexico City");
-        _helper.MouseOver(_orderPageObject.AddressResults[0]);
+        _helper.SendKeysElement(_orderPageObject.FindAddressSection, "Mexico City, Mexico");
+        _helper.SendKeysElement(_orderPageObject.AddressDetailSection, "Mexico City, Mexico");
+
         _helper.WaitForAjax();
         _helper.SendKeysElement(_orderPageObject.ExteriorInteriorNo, "21");
         _helper.SendKeysElement(_orderPageObject.PostalCode, "02820");
@@ -38,14 +40,13 @@ public class OrderPage
     public void FillPaymentForm()
     {
         _helper.ClickElement(_orderPageObject.OXXO);
-        _helper.ClickElement(_orderPageObject.TermsCheckBox);
+        _helper.JsClick(_orderPageObject.TermsInfo);
+        _helper.ClickElement(_orderPageObject.TermsInfoAgreeButton);
         _helper.ClickElement(_orderPageObject.PayButton);
     }
 
     public void VerifyReceivedOrder()
     {
-        _helper.waitClickable(_orderPageObject.CardMessageTextArea);
-
         Assert.IsTrue(_orderPageObject.ThanksMessageText.Displayed);
     }
 
