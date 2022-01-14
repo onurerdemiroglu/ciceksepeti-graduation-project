@@ -1073,3 +1073,36 @@ pm.test("Check response time", () => {
 });
 ```
 </details>
+ 
+##  ![postman monitoring](https://user-images.githubusercontent.com/35347777/147594384-6d3a8248-fb31-450f-8f8c-e7a786057fcb.png) Postman Collection Run
+
+<details>
+  <summary> (<i>Görüntülemek için tıklayın</i>)</summary>
+  
+![postman_run](https://user-images.githubusercontent.com/35347777/149548424-0da6b62a-2216-4182-bd22-17f709c1982b.gif)
+
+</details>
+
+  
+##  ![newman](https://user-images.githubusercontent.com/35347777/147482415-33220019-78d5-4a50-8855-a2f8fe3b8070.png) Newman Raporu
+
+Daha detaylı incelemek için [**buraya**](https://onurerdemiroglu.com.tr/cs-html-reports/) tıklayınız.
+
+<details>
+  <summary> (<i>Raporu görüntülemek için tıklayın</i>)</summary>
+ 
+![newman](https://user-images.githubusercontent.com/35347777/149563493-155844aa-bd1f-4f7a-8353-3e1a73a1e6d3.png)
+
+</details>
+ 
+##  ![1200px-Jenkins_logo svg](https://user-images.githubusercontent.com/35347777/147480987-e53e1e34-a6b5-4491-982f-d95c081112c5.png) Jenkins - Newman Konsol Çıktısı
+ 
+ Daha detaylı incelemek için [**buraya**](https://onurerdemiroglu.com.tr/cs-images/jenkins-newman-console.png) tıklayınız.
+ 
+<details>  
+  <summary> (<i>Raporu görüntülemek için tıklayın</i>)</summary>
+ 
+![jenkins](https://user-images.githubusercontent.com/35347777/149569096-2bbadd10-4340-4053-8099-82f788d81e6f.png)
+ 
+
+</details>
