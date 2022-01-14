@@ -8,7 +8,7 @@ Merhaba, bu projede .Net dilinde NUnit, Selenium, WebDriverManager, SpecFlow, In
 - [X] Ve son olarak InputSimulator'u ürün kişiselleştirme senaryosundaki openfiledialog'u kapatmak için kullandım 🙂
 
 
-#### Testlerinizi yürütmenin yollarından biri, VS Code terminalini kullanmaktır, dotnet testinde terminali açmanız ve gerekli parametreleri girip enter tuşuna basmanız yeterlidir.
+#### 👉 Testlerinizi yürütmenin yollarından biri, VS Code terminalini kullanmaktır. Dotnet testinde terminali açmanız ve gerekli parametreleri girip enter tuşuna basmanız yeterlidir
 
 `dotnet test --filter Category=casetag`
 
