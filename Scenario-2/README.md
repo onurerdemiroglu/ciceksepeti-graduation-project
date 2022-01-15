@@ -165,7 +165,6 @@ pm.test("Check response is true", () => {
 });
  
   
-
 pm.test("Status code name has string", () => {
   pm.expect(response.to.have.status("Unauthorized")); 
   console.log("Error: Unauthorized" +"\n"
