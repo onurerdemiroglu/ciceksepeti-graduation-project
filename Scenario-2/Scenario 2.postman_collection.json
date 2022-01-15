@@ -717,8 +717,6 @@
 									"var responsLimit = 1000; \r",
 									"var responseTime = response.responseTime; \r",
 									" \r",
-									"pm.environment.set(\"UserAccessToken\",actualResponse.access_token);\r",
-									" \r",
 									"\r",
 									"tests[\"Size control\"] = size == 3;   \r",
 									"tests[\"Status code type control\"] = typeof(actualResponse.statusCode) === \"number\";\r",
@@ -818,8 +816,7 @@
 									"var responsLimit = 1000; \r",
 									"var responseTime = response.responseTime; \r",
 									" \r",
-									"pm.environment.set(\"UserAccessToken\",actualResponse.access_token);\r",
-									"  \r",
+									" \r",
 									"tests[\"Size control\"] = size == 3;   \r",
 									"tests[\"Status code type control\"] = typeof(actualResponse.statusCode) === \"number\";\r",
 									"tests[\"Message type control\"] = typeof(actualResponse.message[0]) === \"string\";\r",
@@ -853,7 +850,6 @@
 									"        pm.expect(actualResponse.message[i]).to.eql(expectedResponse[i]);  \r",
 									"    }\r",
 									"});\r",
-									"  \r",
 									"\r",
 									"pm.test(\"Status code name has string\", () => {\r",
 									"  pm.expect(response.to.have.status(\"Bad Request\")); \r",
@@ -927,8 +923,7 @@
 									"var size = Object.keys(actualResponse).length;  \r",
 									"var responsLimit = 1000; \r",
 									"var responseTime = response.responseTime; \r",
-									" \r",
-									"pm.environment.set(\"UserAccessToken\",actualResponse.access_token);\r",
+									"  \r",
 									"  \r",
 									"tests[\"Size control\"] = size == 3;   \r",
 									"tests[\"Status code type control\"] = typeof(actualResponse.statusCode) === \"number\";\r",
@@ -1038,8 +1033,7 @@
 									"var responsLimit = 1000; \r",
 									"var responseTime = response.responseTime; \r",
 									" \r",
-									"pm.environment.set(\"UserAccessToken\",actualResponse.access_token);\r",
-									"   \r",
+									"  \r",
 									"tests[\"Size control\"] = size == 3;   \r",
 									"tests[\"Status code type control\"] = typeof(actualResponse.statusCode) === \"number\";\r",
 									"tests[\"Message type control\"] = typeof(actualResponse.message[0]) === \"string\";\r",
@@ -1136,8 +1130,6 @@
 									"var size = Object.keys(actualResponse).length;  \r",
 									"var responsLimit = 1000; \r",
 									"var responseTime = response.responseTime; \r",
-									" \r",
-									"pm.environment.set(\"UserAccessToken\",actualResponse.access_token);\r",
 									" \r",
 									" \r",
 									"tests[\"Size control\"] = size == 3;   \r",
@@ -1255,9 +1247,7 @@
 									"var responsLimit = 1000; \r",
 									"var responseTime = response.responseTime; \r",
 									" \r",
-									"pm.environment.set(\"UserAccessToken\",actualResponse.access_token);\r",
 									" \r",
-									"\r",
 									"tests[\"Size control\"] = size == 3;   \r",
 									"tests[\"Status code type control\"] = typeof(actualResponse.statusCode) === \"number\";\r",
 									"tests[\"Message type control\"] = typeof(actualResponse.message[0]) === \"string\";\r",
@@ -1368,9 +1358,7 @@
 									"var responsLimit = 1000; \r",
 									"var responseTime = response.responseTime; \r",
 									" \r",
-									"pm.environment.set(\"UserAccessToken\",actualResponse.access_token);\r",
 									" \r",
-									"\r",
 									"tests[\"Size control\"] = size == 3;   \r",
 									"tests[\"Status code type control\"] = typeof(actualResponse.statusCode) === \"number\";\r",
 									"tests[\"Message type control\"] = typeof(actualResponse.message[0]) === \"string\";\r",
@@ -1456,7 +1444,7 @@
 					"response": []
 				},
 				{
-					"name": "Password type is not character",
+					"name": "Password type is not string",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -1478,7 +1466,6 @@
 									"var responsLimit = 1000; \r",
 									"var responseTime = response.responseTime; \r",
 									" \r",
-									"pm.environment.set(\"UserAccessToken\",actualResponse.access_token);\r",
 									"  \r",
 									"tests[\"Size control\"] = size == 3;   \r",
 									"tests[\"Status code type control\"] = typeof(actualResponse.statusCode) === \"number\";\r",
@@ -1568,14 +1555,13 @@
 					"response": []
 				},
 				{
-					"name": "Not email type",
+					"name": "Email type is not string",
 					"event": [
 						{
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"pm.environment.set(\"randomGmail\", [_.random(15555, 566666)]) \r",
-									"pm.environment.set(\"randomPassword\", _.random(15555, 566666)+\"onur\")"
+									"pm.environment.set(\"randomGmail\", _.random(15555, 566666)+\"onur@gmail.com\") "
 								],
 								"type": "text/javascript"
 							}
@@ -1591,8 +1577,7 @@
 									"var responsLimit = 1000; \r",
 									"var responseTime = response.responseTime; \r",
 									" \r",
-									"pm.environment.set(\"UserAccessToken\",actualResponse.access_token);\r",
-									"  \r",
+									" \r",
 									"tests[\"Size control\"] = size == 3;   \r",
 									"tests[\"Status code type control\"] = typeof(actualResponse.statusCode) === \"number\";\r",
 									"tests[\"Message type control\"] = typeof(actualResponse.message[0]) === \"string\";\r",
@@ -1610,6 +1595,7 @@
 									"}); \r",
 									"\r",
 									"var expectedResponse= [\r",
+									"          \"email must be shorter than or equal to 100 characters\",\r",
 									"          \"email must be an email\"\r",
 									"];\r",
 									"   \r",
@@ -1655,7 +1641,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"{{randomGmail}}\",\r\n    \"password\": \"{{randomPassword}}\"\r\n}",
+							"raw": "{\r\n    \"email\": 123456789,\r\n    \"password\": \"{{randomPassword}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
