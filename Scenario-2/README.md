@@ -3,7 +3,15 @@
 > 🔗  https://www.getpostman.com/collections/02771d65ff7004ddfaea
 
  ## ![postman](https://user-images.githubusercontent.com/35347777/147509734-b58b6d8d-1780-4d9b-8c4f-ffcb545d3a1d.png) Postman
+  
+Merhaba, bu projede araç olarak postman kullanma ihtiyacı duydum. Test işlevselliğinin api testinde diğer dillere göre efektif olduğunu düşünüyorum. Monitör etme gibi birçok artı yönü var. 
 
+Testleri doğrudan postman üzerinden collection runner,monitor ile koşabilir ya da Newman yardımıyla testleri koşup, test raporu alabiliriz. Newman'ı kurduktan sonra komut satırına;  
+
+`newman run https://www.getpostman.com/collections/02771d65ff7004ddfaea` ile doğrudan testlerimizi koşabiliriz. Eğer environment kullanılmış ise  **-e dev_environment.json** parametresini ekleyerek environmentleri de dahil edebiliriz.
+
+`newman run` **"collection url"** `-e` **"environment path"** `-r cli,junit,htmlextra --reporter-junit-export "newman/prod_report.xml" --reporter-htmlextra-export `**"export html path"**   ile de testlerimizi hem koşup hem de html raporu çıktısı alabiliriz.
+ 
 
 ## SignIn Testleri
 
