@@ -11,8 +11,10 @@
     <summary><strong>Success sign in</strong></summary>
 
 --------
-
-![success_signin](https://user-images.githubusercontent.com/35347777/149533744-2e7a8923-194d-4bd8-9c84-cb8f93a8b625.PNG)
+ 
+Responses durumlarında başarılı işlemin 200 dönmesi gerektiği söylenmiş ama işlem 201 Created olarak geliyor. Bu yüzden testi fail olarak aldım.
+ 
+![Success_signinv2](https://user-images.githubusercontent.com/35347777/149654893-b4e1a464-4990-49ac-b88d-6b23458c75b1.PNG) 
 
 ```javascript
 const response = pm.response;
@@ -25,7 +27,7 @@ var responseTime = response.responseTime;
 pm.environment.set("UserAccessToken",actualResponse.access_token);
  
 pm.test("Response control", function () { 
-  pm.expect(response.to.have.status(201));
+  pm.expect(response.to.have.status(200));
   pm.expect(response.to.be.withBody);
   pm.expect(response.to.be.json);
   pm.expect(pm.response.to.have.jsonBody('access_token'));
@@ -36,7 +38,7 @@ tests["Access token type control"] = typeof(actualResponse.access_token) === "st
   
 
 pm.test("Status code name has string", () => {
-  pm.expect(response.to.have.status("Created")); 
+  pm.expect(response.to.have.status("OK")); 
 });
   
 
@@ -394,8 +396,9 @@ pm.test("Check response time", () => {
     <summary><strong>Successfully signed-up</strong></summary>
 
 --------
-      
-![Successfully signed-up](https://user-images.githubusercontent.com/35347777/149540515-5cebcc96-8966-4e3a-900b-05c45072be34.PNG)
+SignIn'deki durum benzeri, 201 döndüğü için fail olarak aldım.
+ 
+![signup_successv2](https://user-images.githubusercontent.com/35347777/149654948-65a2df2b-d177-49b3-aef9-a646f770f2c5.PNG)
 
 ```javascript
 const response = pm.response;
@@ -408,7 +411,7 @@ var responseTime = response.responseTime;
 pm.environment.set("UserAccessToken",actualResponse.access_token);
  
 pm.test("Response control", function () { 
-  pm.expect(response.to.have.status(201));
+  pm.expect(response.to.have.status(200));
   pm.expect(response.to.be.withBody);
   pm.expect(response.to.be.json);
   pm.expect(pm.response.to.have.jsonBody('access_token'));
@@ -419,7 +422,7 @@ tests["Access token type control"] = typeof(actualResponse.access_token) === "st
   
 
 pm.test("Status code name has string", () => {
-  pm.expect(response.to.have.status("Created")); 
+  pm.expect(response.to.have.status("OK")); 
 });
    
 pm.test("Response should not be error", function () { 
@@ -1077,31 +1080,32 @@ pm.test("Check response time", () => {
 
 <details>
   <summary> (<i>Görüntülemek için tıklayın</i>)</summary>
-  
-![postman_run](https://user-images.githubusercontent.com/35347777/149548424-0da6b62a-2216-4182-bd22-17f709c1982b.gif)
+   
+![out](https://user-images.githubusercontent.com/35347777/149655155-dcd69400-8acd-4140-a0cb-d8c54efca64f.gif)
 
 </details>
 
   
 ##  ![newman](https://user-images.githubusercontent.com/35347777/147482415-33220019-78d5-4a50-8855-a2f8fe3b8070.png) Newman Raporu
 
-Daha detaylı incelemek için [**buraya**](https://onurerdemiroglu.com.tr/cs-html-reports/) tıklayınız.
+Daha detaylı incelemek için [**buraya**](https://onurerdemiroglu.com.tr/html-test-reports/) tıklayınız.
 
 <details>
   <summary> (<i>Raporu görüntülemek için tıklayın</i>)</summary>
- 
-![newman](https://user-images.githubusercontent.com/35347777/149563493-155844aa-bd1f-4f7a-8353-3e1a73a1e6d3.png)
+  
+ ![newwman](https://user-images.githubusercontent.com/35347777/149655368-fb2d6fe9-6ec5-4ddf-9be1-fd0053f24a00.png)
+
 
 </details>
  
 ##  ![1200px-Jenkins_logo svg](https://user-images.githubusercontent.com/35347777/147480987-e53e1e34-a6b5-4491-982f-d95c081112c5.png) Jenkins - Newman Konsol Çıktısı
  
- Daha detaylı incelemek için [**buraya**](https://onurerdemiroglu.com.tr/cs-images/jenkins-newman-console.png) tıklayınız.
+ Daha detaylı incelemek için [**buraya**](https://onurerdemiroglu.com.tr/cs-images/jenkins-console-newman.png) tıklayınız.
  
 <details>  
   <summary> (<i>Raporu görüntülemek için tıklayın</i>)</summary>
- 
-![jenkins](https://user-images.githubusercontent.com/35347777/149569096-2bbadd10-4340-4053-8099-82f788d81e6f.png)
- 
+  
+ ![jenkins_1](https://user-images.githubusercontent.com/35347777/149655465-42ee2ab6-c41b-4bce-b45a-337ed8417221.png)
+
 
 </details>
