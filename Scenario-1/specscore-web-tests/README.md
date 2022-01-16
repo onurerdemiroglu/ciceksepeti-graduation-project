@@ -32,10 +32,11 @@ Scenario: Valid User Login Control
         | sirdonespe@vusra.com | bootcamp |
     Then  I should see My Account section
 ```
+
+
+https://user-images.githubusercontent.com/35347777/149663370-3e4768ea-0265-4621-a0b0-ef7353d45784.mp4
  
-
-https://user-images.githubusercontent.com/35347777/149358658-ed29c6b7-ca43-4725-86dc-c690d42aafee.mp4
-
+ 
 #### 📝 SpecFlow LivingDoc Raporu
 ---
 
@@ -45,6 +46,7 @@ https://user-images.githubusercontent.com/35347777/149358658-ed29c6b7-ca43-4725-
 
 ### 👨‍💻 Senaryo-2 : Geçerli Ürün Sıralama Kontrolü
 ---
+Pc video kayıtta olduğundan çok yavaşlıyor ve test uzuyor(Video kırptım). Gerçek test süresi raporda olduğu gibidir.
 
 ```cucumber
 @casetwo @Product_validSorting
@@ -52,20 +54,21 @@ Scenario Outline: Valid Product Sorting Control
     Given  I open the 'flowers' url
     When   I close the address focus on the home page
     And    I sort result list based on <sortCriterion>
+    And    I scroll to the end of the page
     Then   I should see the prices listed from high to low
 
     Examples:
         | sortCriterion      |
         | Price: High to Low |
 ```
+  
+https://user-images.githubusercontent.com/35347777/149663418-cf983ef7-4f0e-4411-af3e-f3648c39e5b3.mp4
  
-
-https://user-images.githubusercontent.com/35347777/149364844-020f2278-d794-4a1a-84b2-37c512286228.mp4
  
 #### 📝 SpecFlow LivingDoc Raporu
 ---
 
-![casetwo](https://user-images.githubusercontent.com/35347777/149364868-bf78a19b-dfcc-4730-a904-646de8863278.PNG)
+![casetwo](https://user-images.githubusercontent.com/35347777/149662317-9de5efc7-b6cb-4d3c-912c-ad34141e3f85.png) 
 
 **Sonuç :** `Ürünlerin fiyatları başarılı bir şekilde sıralandığı görülmüştür. ✅`
 
@@ -81,7 +84,9 @@ Scenario: Control The New Products Are Displayed On Each New Page
 ```
  
 
-https://user-images.githubusercontent.com/35347777/149365107-e184ceac-1dc1-481c-9e3b-7ee046193f3a.mp4
+
+https://user-images.githubusercontent.com/35347777/149663440-fb668dfd-0e4c-4196-8436-9ded405fdaed.mp4
+ 
  
 #### 📝 SpecFlow LivingDoc Raporu
 ---
@@ -107,9 +112,11 @@ Scenario: Payment Check With "OXXO"
     And   I fill out the payment form
     Then  I should see the message we received your order
 ```
+  
  
 
-https://user-images.githubusercontent.com/35347777/149365277-388716d1-2d6b-4bd4-be02-970fab230670.mp4
+https://user-images.githubusercontent.com/35347777/149663530-d911c7b9-b66a-498e-9310-ab467cd7c246.mp4
+
 
 #### 📝 SpecFlow LivingDoc Raporu
 ---
@@ -132,9 +139,8 @@ Scenario: Customizing Product And Add To Basket
 ```
  
 
-https://user-images.githubusercontent.com/35347777/149365497-07ec2e9b-1d0e-4789-98a0-e570ad91de34.mp4
- 
-
+https://user-images.githubusercontent.com/35347777/149663465-b068750e-6b2e-413a-b93b-9d24582bd696.mp4
+  
 #### 📝 SpecFlow LivingDoc Raporu
 ---
 
@@ -154,10 +160,10 @@ https://user-images.githubusercontent.com/35347777/149365497-07ec2e9b-1d0e-4789-
     And   I find all the links under the menu
     Then  I should see the links are not broken
 ```
-  
+   
 
-https://user-images.githubusercontent.com/35347777/149365702-eed4e9a9-e524-4427-80ad-39bc12c76a11.mp4
-  
+https://user-images.githubusercontent.com/35347777/149663471-fd8ce362-ce8e-4764-aebd-5d17d03e1686.mp4
+ 
 #### 📝 SpecFlow Living Raporu
 ---
 
