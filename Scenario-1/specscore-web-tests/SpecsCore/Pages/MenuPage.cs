@@ -18,15 +18,14 @@ public class MenuPage
             if (!Driver.get().Url.Contains("page=" + pageNumber.ToString())) // ? Is page value equal to i in url?
             {
                 int totalProductInPage = _menuPageObject.ProductArray.Count;
-                string lastProductLocator = ".js-category-item-hover:nth-child(" + Convert.ToString(totalProductInPage) + ")";
-                string lastProductNewPage = ".js-category-item-hover:nth-child(" + Convert.ToString(totalProductInPage + perPageProduct) + ")";
+                string lastProductLocator = "//a[@data-position='" + Convert.ToString(totalProductInPage) + "']";
+                string lastProductNewPage = "//a[@data-position='" + Convert.ToString(totalProductInPage + perPageProduct) + "']";
 
 
                 Assert.AreEqual(perPageProduct * i, totalProductInPage);
 
-                _helper.ScrollToElement(By.CssSelector(lastProductLocator));
-                _helper.waitElementExist(By.CssSelector(lastProductNewPage)); // ? Wait for the exist of new products on the page
-
+                _helper.ScrollToElement(By.XPath(lastProductLocator));
+                _helper.waitElementExist(By.XPath(lastProductNewPage)); // ? Wait for the exist of new products on the page
             }
         }
     }
