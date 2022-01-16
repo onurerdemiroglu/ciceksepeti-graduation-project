@@ -6,6 +6,7 @@ using System.Linq;
 
 public class MenuPage
 {
+    public static IWebDriver driver = Driver.get();
     Helper _helper = new Helper();
     MenuPageObject _menuPageObject = new MenuPageObject();
     List<string> links = new List<string>();
@@ -32,25 +33,40 @@ public class MenuPage
 
     public void SortByCriteria(string sortCriterion)
     {
-        IWebElement locator = Driver.get().FindElement(By.XPath("//*[text()='" + sortCriterion + "']"));
+        IWebElement locator = driver.FindElement(By.XPath("//*[text()='" + sortCriterion + "']"));
 
         _helper.Hover(_menuPageObject.SortDropDown);
         _helper.ClickElement(locator);
+        _helper.WaitForAjax();
+    }
+
+    public void ScrollToLastPage()
+    {
+        int TotalProduct = Int32.Parse(_menuPageObject.ProductCount.Text);
+
+        while (_menuPageObject.ProductArray.Count < TotalProduct)
+        {
+            _helper.ScrollTo(_menuPageObject.ProductArray[_menuPageObject.ProductArray.Count - 1]);
+            _helper.WaitForAjax();
+        }
+
+         ((IJavaScriptExecutor)driver).
+        ExecuteScript("document.querySelectorAll('.price--old').forEach(function(element) {element.remove();});"); // ? Remove Old Prices
     }
 
     public void VerifiyHighToLow()
     {
-        int TotalProduct = _menuPageObject.ProductArray.Count;
-        Double[] PriceArray = new Double[TotalProduct + 1];
+        int TotalProduct = Int32.Parse(_menuPageObject.ProductCount.Text);
 
+        Double[] PriceArray = new Double[TotalProduct + 1];
 
         for (int i = 1; i <= TotalProduct; i++)  // ? Product prices are added to the array
         {
             string locatorPriceInt = "(//span[@class='price__integer-value'])[" + i.ToString() + "]";
             string locatorPriceDec = "(//span[@class='price__decimal-value-with-currency'])[" + i.ToString() + "]";
 
-            double priceInt = Double.Parse(Driver.get().FindElement(By.XPath(locatorPriceInt)).Text);
-            double priceDec = Double.Parse("0" + Driver.get().FindElement(By.XPath(locatorPriceDec)).Text);
+            double priceInt = Double.Parse(driver.FindElement(By.XPath(locatorPriceInt)).Text);
+            double priceDec = Double.Parse("0" + driver.FindElement(By.XPath(locatorPriceDec)).Text);
 
             PriceArray[i] = priceInt + priceDec;
         }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "plxWOy9cZygstJmCSJ6CgDuBRRWYWOoA1CfFrRwqyhc0N3glksHeos5LpHELIEkrigWzEPZ8JLssrGEbDwWV/A==",
+  "dgSpecHash": "2j2LMsfvXMJNyN4xyjfCRioNu7eUw4o2Ydd0VPTvJVabB5orWRgc/Tk4TbbvuSYeKKs9aw9XaXofOuc/0ru0iw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\monst\\OneDrive\\Masaüstü\\SpecsCoreWebTest\\SpecsCoreWebTests.csproj",
+  "projectFilePath": "C:\\Users\\monst\\OneDrive\\Belgeler\\GitHub\\Bitirme Projesi\\ciceksepeti-graduation-project\\Scenario-1\\specscore-web-tests\\SpecsCoreWebTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\monst\\.nuget\\packages\\anglesharp\\0.16.1\\anglesharp.0.16.1.nupkg.sha512",
     "C:\\Users\\monst\\.nuget\\packages\\bodi\\1.5.0\\bodi.1.5.0.nupkg.sha512",

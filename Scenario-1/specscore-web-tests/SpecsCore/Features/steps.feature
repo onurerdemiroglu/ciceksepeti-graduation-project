@@ -19,6 +19,7 @@ Feature: Mizu Web UI Tests
         Given  I open the 'flowers' url
         When   I close the address focus on the home page
         And    I sort result list based on <sortCriterion>
+        And    I scroll to the end of the page
         Then   I should see the prices listed from high to low
 
         Examples:

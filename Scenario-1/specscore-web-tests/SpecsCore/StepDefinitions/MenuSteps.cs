@@ -19,6 +19,11 @@ public class MenuSteps
         _menuPage.SortByCriteria(sortCriterion);
     }
 
+    [When(@"I scroll to the end of the page")]
+    public void ScrollToLastPage()
+    {
+        _menuPage.ScrollToLastPage();
+    }
 
     [Then(@"I should see the prices listed from high to low")]
     public void PricesShouldBeListedHighToLow()

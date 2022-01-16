@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\monst\\OneDrive\\Masaüstü\\SpecsCoreWebTest\\SpecsCoreWebTests.csproj": {}
+    "C:\\Users\\monst\\OneDrive\\Belgeler\\GitHub\\Bitirme Projesi\\ciceksepeti-graduation-project\\Scenario-1\\specscore-web-tests\\SpecsCoreWebTests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\monst\\OneDrive\\Masaüstü\\SpecsCoreWebTest\\SpecsCoreWebTests.csproj": {
+    "C:\\Users\\monst\\OneDrive\\Belgeler\\GitHub\\Bitirme Projesi\\ciceksepeti-graduation-project\\Scenario-1\\specscore-web-tests\\SpecsCoreWebTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\monst\\OneDrive\\Masaüstü\\SpecsCoreWebTest\\SpecsCoreWebTests.csproj",
+        "projectUniqueName": "C:\\Users\\monst\\OneDrive\\Belgeler\\GitHub\\Bitirme Projesi\\ciceksepeti-graduation-project\\Scenario-1\\specscore-web-tests\\SpecsCoreWebTests.csproj",
         "projectName": "SpecsCoreWebTests",
-        "projectPath": "C:\\Users\\monst\\OneDrive\\Masaüstü\\SpecsCoreWebTest\\SpecsCoreWebTests.csproj",
+        "projectPath": "C:\\Users\\monst\\OneDrive\\Belgeler\\GitHub\\Bitirme Projesi\\ciceksepeti-graduation-project\\Scenario-1\\specscore-web-tests\\SpecsCoreWebTests.csproj",
         "packagesPath": "C:\\Users\\monst\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\monst\\OneDrive\\Masaüstü\\SpecsCoreWebTest\\obj\\",
+        "outputPath": "C:\\Users\\monst\\OneDrive\\Belgeler\\GitHub\\Bitirme Projesi\\ciceksepeti-graduation-project\\Scenario-1\\specscore-web-tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\monst\\AppData\\Roaming\\NuGet\\NuGet.Config",
