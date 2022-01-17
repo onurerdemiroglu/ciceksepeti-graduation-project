@@ -8,8 +8,16 @@ Test raporları; <br>
 **` ramp-up: 50s`**<br>
 **` loop count : 1`**<br>
 değerleri ile raporlanmıştır.
+ 
 
----
+##  ![download](https://user-images.githubusercontent.com/35347777/149824311-1625557e-04f1-43e4-beb8-e13b4b8a7346.png) JMeter Raporları
+   
+
+<details>  
+  <summary> (<i>Raporu görüntülemek için tıklayın</i>)</summary>
+
+--------
+ 
 <details>
     <summary><strong>Response Time Graph</strong></summary>
 
@@ -88,5 +96,19 @@ değerleri ile raporlanmıştır.
 --------
  
 <img width="1475" alt="9 Transactions per Second" src="https://user-images.githubusercontent.com/35347777/149794991-e0d93e45-2726-4584-bfe0-8cae6a570613.png">        
+
+</details>
+</details>
+
+##  ![1200px-Jenkins_logo svg](https://user-images.githubusercontent.com/35347777/147480987-e53e1e34-a6b5-4491-982f-d95c081112c5.png) Jenkins - Performans Raporları
+   
+<details>  
+  <summary> (<i>Raporu görüntülemek için tıklayın</i>)</summary>
+
+--------
+    
+![Search](https://user-images.githubusercontent.com/35347777/149824002-172119f8-e983-4370-a007-f5c5a40e4be0.PNG)
+
+![SearchSugg](https://user-images.githubusercontent.com/35347777/149824032-ab19635d-9e52-4c08-a652-32d4434f418d.PNG)
 
 </details>
