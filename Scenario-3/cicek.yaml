@@ -1,0 +1,9 @@
+execution:
+- concurrency: 20
+  ramp-up: 0s
+  hold-for: 10s
+  scenario: SearchAndList 
+  
+scenarios:
+ SearchAndList:
+    script: cicek.jmx 

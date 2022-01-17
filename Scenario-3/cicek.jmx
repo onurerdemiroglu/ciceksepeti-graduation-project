@@ -104,11 +104,68 @@
               <boolProp name="ISREGEX">true</boolProp>
             </JSONPathAssertion>
             <hashTree/>
-            <SizeAssertion guiclass="SizeAssertionGui" testclass="SizeAssertion" testname="Is Response Size Less Than &apos;5000 bytes&apos;" enabled="true">
+            <SizeAssertion guiclass="SizeAssertionGui" testclass="SizeAssertion" testname="Size Assertion" enabled="true">
               <stringProp name="Assertion.test_field">SizeAssertion.response_network_size</stringProp>
               <stringProp name="SizeAssertion.size">5000</stringProp>
               <intProp name="SizeAssertion.operator">4</intProp>
             </SizeAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response URL Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="625103771">www.cicek.com/Suggest/Get</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.sample_label</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Header Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="691458467">Content-Type: text/html; charset=utf-8</stringProp>
+                <stringProp name="894172713">Connection: keep-alive</stringProp>
+                <stringProp name="1067474899">X-Content-Type-Options: nosniff</stringProp>
+                <stringProp name="1782658683">X-Frame-Options: SAMEORIGIN</stringProp>
+                <stringProp name="-148416090">X-XSS-Protection: 1;mode=block</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Request Header Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="459906392">Connection: keep-alive
+Host: www.cicek.com
+User-Agent: Apache-HttpClient/4.5.12 (Java/17)
+</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.request_headers</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">8</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Request Body Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-657900004">GET https://www.cicek.com/Suggest/Get?key=${searchKey}
+
+GET data:
+
+
+[no cookies]
+</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.request_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">8</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Response Time Less Than &apos;1000ms&apos;" enabled="true">
+              <stringProp name="DurationAssertion.duration">1000</stringProp>
+            </DurationAssertion>
             <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Search" enabled="true">
@@ -138,14 +195,73 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <SizeAssertion guiclass="SizeAssertionGui" testclass="SizeAssertion" testname="Is Response Size Less Than &apos;150,000 bytes&apos;" enabled="true">
+            <SizeAssertion guiclass="SizeAssertionGui" testclass="SizeAssertion" testname="Size Assertion" enabled="true">
               <stringProp name="Assertion.test_field">SizeAssertion.response_network_size</stringProp>
               <stringProp name="SizeAssertion.size">150000</stringProp>
               <intProp name="SizeAssertion.operator">4</intProp>
             </SizeAssertion>
             <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response URL Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="1413109284">www.cicek.com/Catalog/AjaxCategory</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.sample_label</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Header Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="691458467">Content-Type: text/html; charset=utf-8</stringProp>
+                <stringProp name="1482148743">Transfer-Encoding:  chunked</stringProp>
+                <stringProp name="894172713">Connection: keep-alive</stringProp>
+                <stringProp name="1896208081">Connection: Transfer-Encoding</stringProp>
+                <stringProp name="1067474899">X-Content-Type-Options: nosniff</stringProp>
+                <stringProp name="1782658683">X-Frame-Options: SAMEORIGIN</stringProp>
+                <stringProp name="-148416090">X-XSS-Protection: 1;mode=block</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Request Header Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="459906392">Connection: keep-alive
+Host: www.cicek.com
+User-Agent: Apache-HttpClient/4.5.12 (Java/17)
+</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.request_headers</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">8</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Request Body Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-986789216">GET https://www.cicek.com/Catalog/AjaxCategory?query=${searchKey}
+
+GET data:
+
+
+[no cookies]
+</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.request_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">8</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Response Time Less Than &apos;1000ms&apos;" enabled="true">
+              <stringProp name="DurationAssertion.duration">1000</stringProp>
+            </DurationAssertion>
+            <hashTree/>
           </hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Is Response Code &apos;200&apos;" enabled="true">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code &apos;200&apos;" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="49586">200</stringProp>
             </collectionProp>
@@ -155,7 +271,7 @@
             <intProp name="Assertion.test_type">8</intProp>
           </ResponseAssertion>
           <hashTree/>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Is Response Message &apos;OK&apos;" enabled="true">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Message &apos;OK&apos;" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="2524">OK</stringProp>
             </collectionProp>
@@ -164,10 +280,6 @@
             <boolProp name="Assertion.assume_success">false</boolProp>
             <intProp name="Assertion.test_type">8</intProp>
           </ResponseAssertion>
-          <hashTree/>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Is Response Time Less Than 2000ms&apos;" enabled="true">
-            <stringProp name="DurationAssertion.duration">2000</stringProp>
-          </DurationAssertion>
           <hashTree/>
           <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
@@ -316,6 +428,7 @@
             </value>
           </objProp>
           <stringProp name="filename"></stringProp>
+          <stringProp name="RespTimeGraph.interval">700</stringProp>
         </ResultCollector>
         <hashTree/>
         <ResultCollector guiclass="StatGraphVisualizer" testclass="ResultCollector" testname="Aggregate Graph" enabled="true">
