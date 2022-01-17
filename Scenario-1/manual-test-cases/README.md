@@ -1,4 +1,4 @@
-# manual-test-cases
+# Manual Test Cases
 
 
 - [X]  `https://www.mizu.com/login sayfası için manuel test caselerinin çıkartılması `
