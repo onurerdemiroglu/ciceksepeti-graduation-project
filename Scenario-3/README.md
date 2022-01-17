@@ -11,7 +11,8 @@ değerleri ile raporlanmıştır.
  
 
 ##  ![download](https://user-images.githubusercontent.com/35347777/149824311-1625557e-04f1-43e4-beb8-e13b4b8a7346.png) JMeter Raporları
-   
+    
+Daha detaylı incelemek için [**buraya**](https://onurerdemiroglu.com.tr/jmeter-html-reports/) tıklayınız.
 
 <details>  
   <summary> (<i>Raporu görüntülemek için tıklayın</i>)</summary>
