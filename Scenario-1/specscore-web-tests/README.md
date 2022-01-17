@@ -10,11 +10,10 @@ Merhaba, bu projede .Net dilinde NUnit, Selenium, WebDriverManager, SpecFlow, In
 
 #### 👉 Testlerinizi yürütmenin yollarından biri, VS Code terminalini kullanmaktır. Dotnet testinde terminali açmanız ve gerekli parametreleri girip enter tuşuna basmanız yeterlidir
 
-`dotnet test --filter Category=casetag`
+Tüm testleri koşmak için : `dotnet test`
 
-`dotnet test --filter "Category=casetag & Category=casetag"`
-
-`dotnet test --filter "Category=casetag | Category=casetag"`
+Tag'a bağlı testleri koşmak için : `dotnet test --filter Category=casetag`
+ 
 
 
 ### 👨🏿‍💻 Senaryo-1 : Geçerli Oturum Açma Kontrolü
