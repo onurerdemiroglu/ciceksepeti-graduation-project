@@ -206,7 +206,6 @@ GET data:
             <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Header Assertion" enabled="true">
               <collectionProp name="Asserion.test_strings">
                 <stringProp name="691458467">Content-Type: text/html; charset=utf-8</stringProp>
-                <stringProp name="1482148743">Transfer-Encoding:  chunked</stringProp>
                 <stringProp name="894172713">Connection: keep-alive</stringProp>
                 <stringProp name="1896208081">Connection: Transfer-Encoding</stringProp>
                 <stringProp name="1067474899">X-Content-Type-Options: nosniff</stringProp>
