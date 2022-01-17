@@ -9,6 +9,7 @@ Test raporları; <br>
 **` loop count : 1`**<br>
 değerleri ile raporlanmıştır.
 
+---
 <details>
     <summary><strong>Response Time Graph</strong></summary>
 
