@@ -106,7 +106,7 @@ değerleri ile raporlanmıştır.
   <summary> (<i>Raporu görüntülemek için tıklayın</i>)</summary>
 
 --------
-    
+     
 ![Search](https://user-images.githubusercontent.com/35347777/149824002-172119f8-e983-4370-a007-f5c5a40e4be0.PNG)
 
 ![SearchSugg](https://user-images.githubusercontent.com/35347777/149824032-ab19635d-9e52-4c08-a652-32d4434f418d.PNG)
