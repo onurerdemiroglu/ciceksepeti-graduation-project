@@ -100,7 +100,7 @@ değerleri ile raporlanmıştır.
 </details>
 </details>
 
-##  ![1200px-Jenkins_logo svg](https://user-images.githubusercontent.com/35347777/147480987-e53e1e34-a6b5-4491-982f-d95c081112c5.png) Jenkins - Performans Raporları
+##  ![1200px-Jenkins_logo svg](https://user-images.githubusercontent.com/35347777/147480987-e53e1e34-a6b5-4491-982f-d95c081112c5.png) Jenkins - Raporları
    
 <details>  
   <summary> (<i>Raporu görüntülemek için tıklayın</i>)</summary>
