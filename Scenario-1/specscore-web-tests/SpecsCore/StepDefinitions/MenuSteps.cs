@@ -4,13 +4,11 @@ using TechTalk.SpecFlow;
 public class MenuSteps
 {
     MenuPage _menuPage = new MenuPage();
-    ProductPage _productPage = new ProductPage();
 
     [Then(@"I scrolling down to page (.*) and check see (.*) products displayed per page")]
     public void ScrollToDownPage(int pageNumber, int perPageProduct)
     {
         _menuPage.DownPage(pageNumber, perPageProduct);
-
     }
 
     [When(@"I sort result list based on (.*)")]
@@ -31,28 +29,17 @@ public class MenuSteps
         _menuPage.VerifiyHighToLow();
     }
 
-
-
     [When(@"I choose shipping address '(.*)'")]
     public void IChooseShippingAddress(string address)
     {
         _menuPage.ChooseAdress(address);
     }
 
-
     [When(@"I open the first product page")]
     public void OpenFirstProductPage()
     {
         _menuPage.OpenFirstProductPage();
     }
-
-
-    [When(@"I select the delivery time and click the add to cart button")]
-    public void DeliveryTimeAndAddToCard()
-    {
-        _productPage.DeliveryTimeAndAddToCard();
-    }
-
 
     [When(@"I find all the links under the menu")]
     public void FindMenuLinks()
@@ -65,7 +52,4 @@ public class MenuSteps
     {
         _menuPage.VerifyLinks();
     }
-
-
-
 }

@@ -21,15 +21,13 @@ public class OrderSteps
     public void FillPaymentForm()
     {
         _orderPage.FillPaymentForm();
-
     }
 
     [Then(@"I should see the message we received your order")]
     public void VerifyReceivedOrder()
     {
         _orderPage.VerifyReceivedOrder();
-    }
-
+    } 
 
     [When(@"I customize the product and click next button")]
     public void PersonalizeProduct()

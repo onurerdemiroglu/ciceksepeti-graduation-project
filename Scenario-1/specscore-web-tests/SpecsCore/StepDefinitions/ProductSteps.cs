@@ -3,9 +3,8 @@ using TechTalk.SpecFlow;
 [Binding]
 public class ProductSteps
 {
-    Helper _helper = new Helper();
     ProductPage _productPage = new ProductPage();
-
+    Helper _helper = new Helper();
 
     [Given(@"I open the '(.*)' url")]
     public void OpenTheUrl(string searchKey)
@@ -19,4 +18,9 @@ public class ProductSteps
         _productPage.AddProductToBasket();
     }
 
+    [When(@"I select the delivery time and click the add to cart button")]
+    public void DeliveryTimeAndAddToCard()
+    {
+        _productPage.DeliveryTimeAndAddToCard();
+    }
 }

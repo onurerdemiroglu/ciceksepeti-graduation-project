@@ -28,5 +28,4 @@ public class HomeSteps
     {
         _homePage.CheckAccountSection();
     }
-
 }

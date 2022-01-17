@@ -1,11 +1,9 @@
-using System.Threading;
 using NUnit.Framework;
 using System.IO;
 public class OrderPage
 {
     Helper _helper = new Helper();
     OrderPageObject _orderPageObject = new OrderPageObject();
-
 
     public void FillOrderInformationForm()
     {
@@ -22,7 +20,6 @@ public class OrderPage
 
         _helper.ClickElement(_orderPageObject.NextOrderButton);
         _helper.ClickElement(_orderPageObject.NextOptionalProduct);
-
     }
 
     public void FillSenderInformationForm()

@@ -1,6 +1,4 @@
 
-
-
 public class LoginPage
 {
     Helper _helper = new Helper();
@@ -17,5 +15,4 @@ public class LoginPage
     {
         _helper.ClickElement(_loginPageObject.GuestCheckOut);
     }
-
 }

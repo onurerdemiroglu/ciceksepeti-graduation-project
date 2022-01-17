@@ -12,9 +12,8 @@ public class ProductPage
         _helper.ClickElement(_productPageObject.FirstDeliveryHour);
 
         _helper.ClickElement(_productPageObject.AddToCart);
-    }
-
-
+    } 
+    
     public void AddProductToBasket()
     {
         _helper.ClickElement(_productPageObject.AddToCart);

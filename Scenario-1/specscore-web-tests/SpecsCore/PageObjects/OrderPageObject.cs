@@ -32,8 +32,6 @@ public class OrderPageObject
     public IWebElement ProductTitle => Driver.get().FindElement(BasketLocators.ProductTitle);
 
 
-
-
     public static class OrderInformationLocators
     {
         public static readonly By PersonalizeParagraph = By.Id("dynamicText0");
@@ -82,9 +80,6 @@ public class OrderPageObject
         public static readonly By ProductTitle = By.CssSelector(".cart__item-col-link");
 
     }
-
-
-
 }
 
 

@@ -18,11 +18,7 @@ public class ProductPageObject
         public static readonly By FirstDeliveryHour = By.CssSelector("option:nth-child(2)");
         public static readonly By DynamicText = By.Id("dynamicText0");
         public static readonly By Upload = By.CssSelector(".custom-image__input");
-
     }
-
-
-
 }
 
 

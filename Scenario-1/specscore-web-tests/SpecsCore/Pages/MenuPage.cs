@@ -10,7 +10,6 @@ public class MenuPage
     Helper _helper = new Helper();
     MenuPageObject _menuPageObject = new MenuPageObject();
     List<string> links = new List<string>();
-    List<string> uniqueMenuLinks = new List<string>();
 
     public void DownPage(int pageNumber, int perPageProduct)
     {
@@ -117,10 +116,9 @@ public class MenuPage
             links.Add(item.GetAttribute("href"));
     }
 
-
-
     public void VerifyLinks()
     {
+        List<string> uniqueMenuLinks = new List<string>();
         uniqueMenuLinks = links.
                             Where(s => !string.IsNullOrWhiteSpace(s)).
                             Distinct().ToList();   // ? empty and same data is cleared
@@ -131,7 +129,4 @@ public class MenuPage
             Assert.AreEqual(_helper.IsLinkBroken(item), "link is not broken");
         }
     }
-
-
-
 }

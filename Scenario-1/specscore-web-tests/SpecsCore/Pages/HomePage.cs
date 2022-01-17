@@ -3,13 +3,13 @@ using NUnit.Framework;
 
 public class HomePage
 {
-
+    public static IWebDriver driver = Driver.get();
     HomePageObject _homePageObject = new HomePageObject();
     Helper _helper = new Helper();
 
     public void GoToHomePage()
     {
-        Driver.get().Navigate().GoToUrl("https://www.mizu.com/");
+        driver.Navigate().GoToUrl("https://www.mizu.com/");
     }
 
     public void GoToLoginPage()
@@ -21,7 +21,7 @@ public class HomePage
     public void CloseAdressFocus()
     {
         while (_homePageObject.SubHeaderOverlay.GetAttribute("style") == "display: block;")
-            Driver.get().FindElement(By.CssSelector("body")).Click();
+            driver.FindElement(By.CssSelector("body")).Click();
 
         _helper.WaitForAjax();
     }
@@ -30,6 +30,5 @@ public class HomePage
     {
         _helper.WaitForAjax();
         Assert.IsTrue(_homePageObject.MyAccountMenu.Displayed);
-    }
-
+    } 
 }

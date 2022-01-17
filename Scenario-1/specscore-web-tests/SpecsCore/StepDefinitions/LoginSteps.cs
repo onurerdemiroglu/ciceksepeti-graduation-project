@@ -6,7 +6,6 @@ public class LoginSteps
 {
     LoginPage _loginPage = new LoginPage();
 
-
     [When(@"I logged in with the following data:")]
     public void Login(Table table)
     {
@@ -20,6 +19,4 @@ public class LoginSteps
     {
         _loginPage.ClickTheGuestCheckout();
     }
-
-
 }

@@ -19,9 +19,6 @@ public class LoginPageObject
         public static readonly By GuestCheckOut = By.CssSelector(".order-login__no-membership");
 
     }
-
-
-
 }
 
 

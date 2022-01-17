@@ -1,5 +1,3 @@
-using System.Threading;
-using System.IO;
 using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -8,8 +6,6 @@ using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Edge;
 using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
-using Newtonsoft.Json.Linq;
-using NUnit.Framework;
 using TechTalk.SpecFlow;
 
 [Binding]

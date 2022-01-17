@@ -30,10 +30,4 @@ public class MenuPageObject
         public static readonly By SubMenuItemsLinks2 = By.CssSelector(".main-submenu__item.no-more-sub > a");
 
     }
-
-
-
-
 }
-
-
