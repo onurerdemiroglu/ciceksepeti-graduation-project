@@ -92,7 +92,7 @@ public class MenuPage
     {
         for (int j = 0; j < _menuPageObject.MainMenuLinks.Count; j++)   // ? Hover all menus
         {
-			_helper.WaitForAjax();
+	    _helper.WaitForAjax();
             _helper.MouseOver(_menuPageObject.MainMenuLinks[j]); // ?Hover Main Menu
 
             for (int i = 0; i < _menuPageObject.SubMenuLinks.Count; i++)
