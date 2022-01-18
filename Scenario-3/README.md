@@ -1,6 +1,7 @@
 # JMeter - Load Test
 
- ![JMeter](https://user-images.githubusercontent.com/35347777/149796843-941a0aca-4d77-4d13-a468-662f994324cd.PNG)
+
+![JMeter](https://user-images.githubusercontent.com/35347777/149926722-c559cff1-f660-4a91-810c-955ed1dc3700.PNG)
 
 
 Test raporları; <br>
